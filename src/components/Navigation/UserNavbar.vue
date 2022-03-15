@@ -9,16 +9,16 @@
           <router-link class="link" :to="{ path: '/' }">Home</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ path: '/' }">TopUp</router-link>
+          <router-link class="link" :to="{ path: '/topup' }">TopUp</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ path: '/' }">History</router-link>
+          <router-link class="link" :to="{ path: '/history' }">History</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ path: '/' }">Register</router-link>
+          <router-link class="link" :to="{ path: '/register' }">Register</router-link>
         </li>
         <li>
-          <router-link class="link" :to="{ path: '/' }">Login</router-link>
+          <router-link class="link" :to="{ path: '/login' }">Login</router-link>
         </li>
       </ul>
       <div class="icon">
@@ -35,16 +35,16 @@
             <router-link class="link" :to="{ path: '/' }">Home</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/' }">TopUp</router-link>
+            <router-link class="link" :to="{ path: '/topup' }">TopUp</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/' }">History</router-link>
+            <router-link class="link" :to="{ path: '/history' }">History</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/' }">Register</router-link>
+            <router-link class="link" :to="{ path: '/register' }">Register</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/' }">Login</router-link>
+            <router-link class="link" :to="{ path: '/login' }">Login</router-link>
           </li>
         </ul>
       </transition>
