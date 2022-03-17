@@ -56,7 +56,6 @@
   padding: 10px;
 } */
 .image_div {
-  padding-top: 6rem;
   position: relative;
 }
 img {
