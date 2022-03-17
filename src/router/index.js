@@ -1,16 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import HomeView from '../views/HomeView.vue'
-import HistoryView from '../views/HistoryView.vue'
-import TopUpView from '../views/TopUpView.vue'
-
 Vue.use(VueRouter)
 
 //add component
 import HomeView from '../views/HomeView.vue'
 import HistoryView from '../views/HistoryView.vue'
 import LoginView from '../views/LoginView.vue'
+import TopUpView from '../views/TopUpView.vue'
 
 const routes = [{
         path: '/',
