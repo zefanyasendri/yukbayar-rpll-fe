@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import HomeView from '../views/HomeView.vue'
+import HistoryView from '../views/HistoryView.vue'
+import TopUpView from '../views/TopUpView.vue'
+
 Vue.use(VueRouter)
 
 //add component
@@ -31,6 +35,11 @@ const routes = [{
         path: '/login',
         name : 'login',
         component: LoginView
+    },
+    {
+        path:'/topup',
+        name: 'topup',
+        component: TopUpView
     }
 ]
 
