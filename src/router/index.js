@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import HomeView from '../views/HomeView.vue'
 import HistoryView from '../views/HistoryView.vue'
 import TopUpView from '../views/TopUpView.vue'
 
 Vue.use(VueRouter)
+
+//add component
+import HomeView from '../views/HomeView.vue'
+import HistoryView from '../views/HistoryView.vue'
+import LoginView from '../views/LoginView.vue'
 
 const routes = [{
         path: '/',
@@ -24,7 +30,13 @@ const routes = [{
         path: '/history',
         name: 'history',
         component: HistoryView
-    },{
+    },
+    {
+        path: '/login',
+        name : 'login',
+        component: LoginView
+    },
+    {
         path:'/topup',
         name: 'topup',
         component: TopUpView

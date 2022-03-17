@@ -1,55 +1,71 @@
 <template>
-  <header :class="{ 'scrolled-nav': scrolledNav }">
-    <nav>
-      <div class="branding">
-        <img src="@/assets/Images/YukBayar2.png" alt="" />
-      </div>
-      <ul v-show="!mobile" class="MyNavigation">
-        <li>
-          <router-link class="link" :to="{ path: '/' }">Home</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ path: '/topup' }">TopUp</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ path: '/history' }">History</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ path: '/register' }">Register</router-link>
-        </li>
-        <li>
-          <router-link class="link" :to="{ path: '/login' }">Login</router-link>
-        </li>
-      </ul>
-      <div class="icon">
-        <i
-          @click="toggleMobileNav"
-          v-show="mobile"
-          class="far fa-bars"
-          :class="{ 'icon-active': movileNav }"
-        ></i>
-      </div>
-      <transition name="mobile-nav">
-        <ul v-show="mobileNav" class="dropdown-nav">
+  <div class="navbar">
+    <header :class="{ 'scrolled-nav': scrolledNav }">
+      <nav>
+        <div class="branding">
+          <img src="@/assets/Images/YukBayar2.png" alt="" />
+        </div>
+        <ul v-show="!mobile" class="MyNavigation">
           <li>
             <router-link class="link" :to="{ path: '/' }">Home</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/topup' }">TopUp</router-link>
+            <router-link class="link" :to="{ path: '/topUp' }"
+              >TopUp</router-link
+            >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/history' }">History</router-link>
+            <router-link class="link" :to="{ path: '/history' }"
+              >History</router-link
+            >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/register' }">Register</router-link>
+            <router-link class="link" :to="{ path: '/register' }"
+              >Register</router-link
+            >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/login' }">Login</router-link>
+            <router-link class="link" :to="{ path: '/login' }"
+              >Login</router-link
+            >
           </li>
         </ul>
-      </transition>
-    </nav>
-  </header>
+        <div class="icon">
+          <i
+            @click="toggleMobileNav"
+            v-show="mobile"
+            class="far fa-bars"
+            :class="{ 'icon-active': movileNav }"
+          ></i>
+        </div>
+        <transition name="mobile-nav">
+          <ul v-show="mobileNav" class="dropdown-nav">
+            <li>
+              <router-link class="link" :to="{ path: '/' }">Home</router-link>
+            </li>
+            <li>
+              <router-link class="link" :to="{ path: '/' }">TopUp</router-link>
+            </li>
+            <li>
+              <router-link class="link" :to="{ path: '/' }"
+                >History</router-link
+              >
+            </li>
+            <li>
+              <router-link class="link" :to="{ path: '/' }"
+                >Register</router-link
+              >
+            </li>
+            <li>
+              <router-link class="link" :to="{ path: '/Login' }"
+                >Login</router-link
+              >
+            </li>
+          </ul>
+        </transition>
+      </nav>
+    </header>
+  </div>
 </template>
 
 <script>
@@ -99,6 +115,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.navbar {
+  padding-bottom: 7rem;
+}
 header {
   background-color: #152349;
   z-index: 100;
