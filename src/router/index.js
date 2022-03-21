@@ -8,6 +8,9 @@ import HomeView from '../views/HomeView.vue'
 import HistoryView from '../views/HistoryView.vue'
 import LoginView from '../views/LoginView.vue'
 import TopUpView from '../views/TopUpView.vue'
+import PLNView from '@/views/Transaksi/PLNView.vue'
+import PLNTagihan from '@/views/Transaksi/Pembayaran/TagihanPLN.vue'
+import PLNToken from '@/views/Transaksi/Pembayaran/TokenPLN.vue'
 
 const routes = [{
         path: '/',
@@ -37,6 +40,18 @@ const routes = [{
         path:'/topup',
         name: 'topup',
         component: TopUpView
+    },{
+        path:'/transaksi/pln',
+        name:'pln',
+        component: PLNView
+    },{
+        path:'/transaksi/pln/tagihan',
+        name:'tagihanpln',
+        component: PLNTagihan
+    },{
+        path:'/transaksi/pln/token',
+        name:'tokenpln',
+        component: PLNToken
     }
 ]
 
