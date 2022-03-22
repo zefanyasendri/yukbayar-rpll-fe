@@ -8,6 +8,7 @@ import HomeView from '../views/HomeView.vue'
 import HistoryView from '../views/HistoryView.vue'
 import LoginView from '../views/LoginView.vue'
 import TopUpView from '../views/TopUpView.vue'
+import RegisterView from '../views/RegisterView'
 
 const routes = [{
         path: '/',
@@ -32,6 +33,11 @@ const routes = [{
         path: '/login',
         name : 'login',
         component: LoginView
+    },
+    {
+        path: '/register',
+        name : 'register',
+        component: RegisterView
     },
     {
         path:'/topup',
