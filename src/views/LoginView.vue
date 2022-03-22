@@ -85,8 +85,12 @@ button {
   font-size: 15px;
 }
 
+button:hover {
+  background-color: #6fedc7;
+}
+
 .login_text {
-  padding-top: 5px;
+  padding-top: 15px;
 }
 
 .btn_text {

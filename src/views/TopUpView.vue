@@ -22,7 +22,11 @@
         <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 1.000.000 </div>
     </div>
   <br>
-      <a href="/topup/pembayaran"><span style="margin-top:2rem;"><button type="button" id="buttontopup">Top Up Sekarang!</button></span></a>
+      <a href="/topup/pembayaran">
+        <span style="margin-top:2rem;">
+          <button type="button" id="buttontopup">Top Up Sekarang!</button>
+        </span>
+      </a>
   </div>
 </template>
 
@@ -93,9 +97,9 @@
 }
 #buttontopup{
     margin-top: 2rem;
-    background-color: #4CAF50;
+    background-color: #78FFD7;
     border: none;
-    color: white;
+    color: #152349;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -105,5 +109,8 @@
     cursor: pointer;
     font-weight: bold;
     border-radius: 20px;
+}
+#buttontopup:hover {
+  background-color: #6fedc7;
 }
 </style>

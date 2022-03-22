@@ -1,6 +1,5 @@
 <template>
   <div class="history">
-    <h3>Ini Halaman History</h3>
     <div class="container is-fluid">
         <div class="box is-align-content-center is-family-sans-serif">
             <div class="columns is-gapless is-multiline is-mobile">
