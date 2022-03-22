@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="box">
-      <span class="title">Daftar Akun baru</span>
+      <span class="title">Daftar Akun Baru</span>
       <br />
       <div class="input_item">
         <label for="fname">Nama Lengkap</label>
@@ -163,8 +163,11 @@ button {
   font-weight: bold;
   font-size: 20px;
 }
+button:hover {
+  background-color: #6fedc7;
+}
 .regis_btn_text {
-  padding-top: 5px;
+  padding-top: 15px;
 }
 .btn_text {
   color: #7bc0ab;
