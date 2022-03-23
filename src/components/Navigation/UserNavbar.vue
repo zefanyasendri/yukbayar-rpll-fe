@@ -3,7 +3,7 @@
     <header :class="{ 'scrolled-nav': scrolledNav }">
       <nav>
         <div class="branding">
-          <img src="@/assets/Images/YukBayar2.png" alt="" />
+          <img src="@/assets/Images/YukBayar.png" alt="" />
         </div>
         <ul v-show="!mobile" class="MyNavigation">
           <li>
