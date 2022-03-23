@@ -52,7 +52,9 @@
         <button class="btn_style">Daftar</button>
         <div class="regis_btn_text">
           <span class="btn_text">Sudah memiliki akun?</span>
-          <span class="btn_text2">Masuk disini</span>
+          <router-link class="link" :to="{ path: '/login' }"
+            >Masuk Disini</router-link
+          >
         </div>
       </div>
     </div>
@@ -174,8 +176,10 @@ button:hover {
   font-weight: 100;
 }
 
-.btn_text2 {
-  color: #78ffd7;
+.link {
   font-weight: bold;
+  color: #78ffd7;
+  list-style: none;
+  text-decoration: none;
 }
 </style>
