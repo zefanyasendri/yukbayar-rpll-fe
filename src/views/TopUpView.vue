@@ -49,7 +49,7 @@
   }
 }
 .all{
-    padding-top: 7rem;
+    padding-top: 2rem;
 }
 .box_saldo{
     display: flex;
