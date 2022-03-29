@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <Navbar />
+    <CustNavbar />
+    <!-- <HomeNavbar /> -->
     <router-view />
+    <FooterPage />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navigation/UserNavbar";
+// import HomeNavbar from "./components/Navigation/HomeNavbar";
+import CustNavbar from "./components/Navigation/CustNavbar";
+import FooterPage from "./components/FooterApp";
 
 export default {
   name: "App",
   components: {
-    Navbar,
+    // HomeNavbar,
+    CustNavbar,
+    FooterPage,
   },
 };
 </script>
@@ -23,5 +29,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 </style>

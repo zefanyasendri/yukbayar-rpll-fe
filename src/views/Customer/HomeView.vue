@@ -3,27 +3,27 @@
   <!-- <router-link to="/order"> -->
   <div class="image_div">
     <router-link to="/PLN">
-      <img src="../assets/Home/PLN.png" />
+      <img src="@/assets/Home/PLN.png" />
     </router-link>
 
     <router-link to="/PDAM">
-      <img src="../assets/Home/PDAM.png" />
+      <img src="@/assets/Home/PDAM.png" />
     </router-link>
 
     <router-link to="/Pajak">
-      <img src="../assets/Home/Pajak.png" />
+      <img src="@/assets/Home/Pajak.png" />
     </router-link>
 
     <router-link to="/Internet">
-      <img src="../assets/Home/Internet.png" />
+      <img src="@/assets/Home/Internet.png" />
     </router-link>
 
     <router-link to="/Asuransi">
-      <img src="../assets/Home/Asuransi.png" />
+      <img src="@/assets/Home/Asuransi.png" />
     </router-link>
 
     <router-link to="/BPJS">
-      <img src="../assets/Home/BPJS.png" />
+      <img src="@/assets/Home/BPJS.png" />
     </router-link>
   </div>
   <!-- </router-link> -->
