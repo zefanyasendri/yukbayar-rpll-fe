@@ -4,11 +4,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 //add component
-import HomeView from '../views/HomeView.vue'
-import HistoryView from '../views/HistoryView.vue'
-import LoginView from '../views/LoginView.vue'
-import TopUpView from '../views/TopUpView.vue'
-import RegisterView from '../views/RegisterView'
+import HomeView from '../views/Customer/HomeView.vue'
+import HistoryView from '../views/Customer/HistoryView.vue'
+import LoginView from '../views/Customer/LoginView.vue'
+import TopUpView from '../views/Customer/TopUpView.vue'
+import RegisterView from '../views/Customer/RegisterView'
+import AboutView from '../views/Customer/AboutView.vue'
+import ProfileView from '../views/Customer/ProfileView.vue'
 
 const routes = [{
         path: '/',
@@ -21,13 +23,17 @@ const routes = [{
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/AboutView.vue')
+        component: AboutView
     },
     {
         path: '/history',
         name: 'history',
         component: HistoryView
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView
     },
     {
         path: '/login',

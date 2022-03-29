@@ -20,14 +20,12 @@
             >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/register' }"
-              >Register</router-link
+            <router-link class="link" :to="{ path: '/profile' }"
+              >Profile</router-link
             >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/login' }"
-              >Login</router-link
-            >
+            <router-link class="link" :to="{ path: '' }">Logout</router-link>
           </li>
         </ul>
         <div class="icon">
