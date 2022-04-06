@@ -4,17 +4,19 @@
             <img id="PLN" src="@/assets/Home/PLN.png"/>
             <div class="box_atas_2">
               <h1 id="txt_nomortoken">Masukkan Nomor Meter</h1>
-              <input type="text" name='input_notagihan' id='input_tagihan_pln' style='width: 300px; height: 50px; display: flex;' maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-              <!--Max Length di set ke 12 karna biasanya nomor tagihan PLN itu 12 angkaw-->
+              <input type="text" name='input_notagihan' id='input_tagihan_pln' style='width: 80%; height: 3.5em; display: flex;' maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+              <!--Max Length di set ke 12 karna biasanya nomor tagihan PLN itu 12 angka-->
 
-              <h1 id="txt_nomortoken" style="margin-top: 1.5rem;">
+            </div>
+        </div>
+
+          <div class="pilih_nominal">
+              <h1 id="txt_nomortoken" style="margin-top: 3.5rem; margin-left: 10rem;">
                 Pilih Nominal
               </h1>
 
               <section>
                 <div class="all_radio">
-                  <!--Bagi Kelompok Radio Button (Bagian Atas)-->
-                  <div class='top_radio'>
                     <!--Button 20rb-->
                     <span class="border_atas"><input type="radio" name='select' id='c_01' value='1'>
                     <label for='c_01'>
@@ -41,9 +43,6 @@
                       </h2>
                     </label>
                     </span>
-                  </div>
-                  <!--Bagi Kelompok Radio Button (Bagian Bawah)-->
-                  <div class='bot_radio'>
                     <!--Button 150rb-->
                     <span class="border_atas">
                     <input type="radio" name='select' id='c_04' value='4'>
@@ -72,10 +71,8 @@
                     </label>
                     </span>
                   </div>
-                </div>
               </section>
             </div>
-        </div>
         <div class="bagian_bawah">
           <select name='kupon' id='kupon_dropdown' >
             <option value='kupon_1'>Kupon 10% YukPay Akhir Bulan</option>
@@ -110,6 +107,8 @@
 .all{
     padding-top: 1rem;
     position: relative;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 .box_atas{
     display:flex;
@@ -119,9 +118,8 @@
   position:relative;
 }
 #PLN{
-  margin-left: 4rem;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 #buttonlistrik{
   background-color: #223196;
@@ -142,12 +140,12 @@ h1#txt_nomortoken{
   display: flex;
   margin-top: 1rem;
   font-family: system-ui, sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   padding : 0.125rem;
 }
 h2{
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 #input_tagihan_pln{
   position:relative;
@@ -156,17 +154,14 @@ h2{
   box-shadow: 1px 1px black;
   padding : 1rem;
   text-align: center;
-  font-size: 1.125rem;
 }
 .all_radio{
-  margin: 1rem 1rem 2rem;
-  position:relative;
+  display:flex;
+  position: relative;
+  margin-top: 2rem;
 }
-.top_radio{
-  display: flex;
-}
-.bot_radio{
-  display: flex;
+input[type='text']{
+  font-size: 1.5rem;
 }
 input[type="radio"]{
   opacity: 0.01;
@@ -189,8 +184,6 @@ input[type='radio']:checked+label,.Checked+label{
 }
 .bagian_bawah{
   display: flex;
-  position: relative;
-  margin-left: 10%;
 }
 #kupon_dropdown{
   border-radius: 20px;
@@ -202,5 +195,6 @@ input[type='radio']:checked+label,.Checked+label{
   padding:10px;
   margin-top: 2.1rem;
   margin-right: 10%;
+  margin-left:1rem;
 }
 </style>

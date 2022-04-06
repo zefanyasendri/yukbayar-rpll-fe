@@ -9,8 +9,16 @@ import HistoryView from '../views/HistoryView.vue'
 import LoginView from '../views/LoginView.vue'
 import TopUpView from '../views/TopUpView.vue'
 import PLNView from '@/views/Transaksi/PLNView.vue'
-import PLNTagihan from '@/views/Transaksi/Pembayaran/TagihanPLN.vue'
-import PLNToken from '@/views/Transaksi/Pembayaran/TokenPLN.vue'
+import PLNTagihan from '@/views/Transaksi/Pembayaran/PLN/TagihanPLN.vue'
+import PLNToken from '@/views/Transaksi/Pembayaran/PLN/TokenPLN.vue'
+import PLNKonfirmasi from '@/views/Transaksi/Pembayaran/PLN/KonfirmasiPLN.vue'
+import PLNBerhasil from '@/views/Transaksi/Pembayaran/PLN/BerhasilPLN.vue'
+import AsuransiView from '@/views/Transaksi/AsuransiView.vue'
+import AsuransiKonfirmasi from '@/views/Transaksi/Pembayaran/Asuransi/KonfirmasiAsuransi.vue'
+import AsuransiBerhasil from '@/views/Transaksi/Pembayaran/Asuransi/BerhasilAsuransi.vue'
+import BPJSView from '@/views/Transaksi/BPJS.vue'
+import BPJSKonfirmasi from '@/views/Transaksi/Pembayaran/BPJS/KonfirmasiBPJS.vue'
+import BPJSBerhasil from '@/views/Transaksi/Pembayaran/BPJS/BerhasilBPJS.vue'
 
 const routes = [{
         path: '/',
@@ -52,6 +60,38 @@ const routes = [{
         path:'/transaksi/pln/token',
         name:'tokenpln',
         component: PLNToken
+    },{
+        path:'/transaksi/pln/token/konfirmasi',
+        name:'konfirmasipln',
+        component: PLNKonfirmasi
+    },{
+        path:'/transaksi/pln/token/konfirmasi/berhasil',
+        name:'berhasilpln',
+        component: PLNBerhasil
+    },{
+        path:'/transaksi/asuransi',
+        name:'asuransi',
+        component: AsuransiView
+    },{
+        path:'/transaksi/asuransi/konfirmasi',
+        name:'konfirmasiasuransi',
+        component:AsuransiKonfirmasi
+    },{
+        path:'/transaksi/asuransi/konfirmasi/berhasil',
+        name:'berhasilasuransi',
+        component:AsuransiBerhasil
+    },{
+        path:'/transaksi/bpjs',
+        name:'bpjs',
+        component:BPJSView
+    },{
+        path:'/transaksi/bpjs/konfirmasi',
+        name:'konfirmasibpjs',
+        component:BPJSKonfirmasi
+    },{
+        path:'/transaksi/BPJS/konfirmasi/berhasil',
+        name:'berhasilbpjs',
+        component: BPJSBerhasil
     }
 ]
 
