@@ -4,7 +4,8 @@
         <h1 class="text_green">Informasi Pelanggan</h1>
         <div class="big_container">
           <div class="container_1">
-              <h1 class="">No. Asuransi</h1>
+              <h1 class="">No. Pelanggan</h1>
+              <h1 class="">Lokasi</h1>
               <h1 class="">ID User</h1>
               <h1 class="">Nama User</h1>
           </div>
@@ -13,10 +14,12 @@
               <h1 class="titik2atas">:</h1>
               <h1 class="titik2atas">:</h1>
               <h1 class="titik2atas">:</h1>
+              <h1 class="titik2atas">:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">0110152090512345</h1>
+              <h1 class="con_kanan">01101520905123451234</h1>
+              <h1 class="con_kanan">Jawa Barat - Kab Bandung</h1>
               <h1 class="con_kanan">594486395839</h1>
               <h1 class="con_kanan">Hanx Xxxxxx Sxxxxx Xxxba</h1>
           </div>
@@ -27,7 +30,7 @@
         <div class="big_container">
           
           <div class="container_1">
-              <h1 class="">Biaya Asuransi</h1>
+              <h1 class="">Biaya PDAM</h1>
               <h1 class="">Biaya Transaksi</h1>
               <h1 style='font-weight:bold;'>Total Pembayaran</h1>
           </div>
@@ -47,10 +50,10 @@
       </div>
       <div class="bagian_kanan">
         <div class="button_pembayaran">
-            <router-link to="/Customer/Transaksi/Asuransi/Konfirmasi/Berhasil">
+            <router-link to="/Customer/Transaksi/PDAM/Konfirmasi/Berhasil">
               <span style="margin-top:50%;"><button type="button" id="button_lanjut_pembayaran">Konfirmasi</button></span>
             </router-link>
-            <router-link to="/Customer/Transaksi/Asuransi">
+            <router-link to="/Customer/Transaksi/BPJS">
               <span style="margin-top:2rem;"><button type="button" id="button_batal_pembayaran">Batal</button></span>
             </router-link>
         </div>
@@ -78,8 +81,8 @@
 .all{
     margin-top: -1rem;
     margin-left: 7rem;
-    display:flex;
     text-align: left;
+    display:flex;
     position:relative;
 }
 .text_green{
