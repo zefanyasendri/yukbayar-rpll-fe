@@ -24,6 +24,15 @@ import AsuransiBerhasil from '@/views/Customer/Transaksi/Pembayaran/Asuransi/Ber
 import BPJSView from '@/views/Customer/Transaksi/BPJSView.vue'
 import BPJSKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/BPJS/KonfirmasiBPJS.vue'
 import BPJSBerhasil from '@/views/Customer/Transaksi/Pembayaran/BPJS/BerhasilBPJS.vue'
+import PDAMView from '@/views/Customer/Transaksi/PDAMView.vue'
+import PDAMKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PDAM/KonfirmasiPDAM.vue'
+import PDAMBerhasil from '@/views/Customer/Transaksi/Pembayaran/PDAM/BerhasilPDAM.vue'
+import InternetView from '@/views/Customer/Transaksi/InternetView.vue'
+import InternetKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/Internet/KonfirmasiInternet.vue'
+import InternetBerhasil from '@/views/Customer/Transaksi/Pembayaran/Internet/BerhasilInternet.vue'
+import PBBView from '@/views/Customer/Transaksi/PBBView.vue'
+import PBBKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PBB/KonfirmasiPBB.vue'
+import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.vue'
 
 const routes = [{
         path: '/',
@@ -114,6 +123,42 @@ const routes = [{
         path:'/customer/transaksi/BPJS/konfirmasi/berhasil',
         name:'berhasilbpjs',
         component: BPJSBerhasil
+    },{
+        path:'/customer/transaksi/PDAM',
+        name:'pdam',
+        component:PDAMView
+    },{
+        path:'/customer/transaksi/PDAM/konfirmasi',
+        name:'konfirmasipdam',
+        component:PDAMKonfirmasi
+    },{
+        path:'/customer/transaksi/PDAM/konfirmasi/berhasil',
+        name:'berhasilpdam',
+        component:PDAMBerhasil
+    },{
+        path:'/customer/transaksi/Internet',
+        name:'internet',
+        component:InternetView
+    },{
+        path:'/customer/transaksi/Internet/konfirmasi',
+        name:'konfirmasiinternet',
+        component:InternetKonfirmasi
+    },{
+        path:'/customer/transaksi/Internet/konfirmasi/berhasil',
+        name:'berhasilinternet',
+        component:InternetBerhasil
+    },{
+        path:'/customer/transaksi/Pajak',
+        name:'pbb',
+        component:PBBView
+    },{
+        path:'/customer/transaksi/Pajak/konfirmasi',
+        name:'konfirmasiinternet',
+        component:PBBKonfirmasi
+    },{
+        path:'/customer/transaksi/Pajak/konfirmasi/berhasil',
+        name:'berhasilinternet',
+        component:PBBBerhasil
     }
 ]
 

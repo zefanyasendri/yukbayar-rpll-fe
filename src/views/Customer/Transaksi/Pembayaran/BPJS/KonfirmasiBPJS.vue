@@ -50,10 +50,10 @@
       </div>
       <div class="bagian_kanan">
         <div class="button_pembayaran">
-            <router-link to="/Transaksi/BPJS/Konfirmasi/Berhasil">
+            <router-link to="/Customer/Transaksi/BPJS/Konfirmasi/Berhasil">
               <span style="margin-top:50%;"><button type="button" id="button_lanjut_pembayaran">Konfirmasi</button></span>
             </router-link>
-            <router-link to="/Transaksi/BPJS">
+            <router-link to="/Customer/Transaksi/BPJS">
               <span style="margin-top:2rem;"><button type="button" id="button_batal_pembayaran">Batal</button></span>
             </router-link>
         </div>
