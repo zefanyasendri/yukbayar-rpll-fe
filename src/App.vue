@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <CustNavbar />
-    <!-- <HomeNavbar /> -->
+    <!-- <CustNavbar /> -->
+    <HomeNavbar />
     <router-view />
     <FooterPage />
   </div>
 </template>
 
 <script>
-// import HomeNavbar from "./components/Navigation/HomeNavbar";
-import CustNavbar from "./components/Navigation/CustNavbar";
+import HomeNavbar from "./components/Navigation/HomeNavbar";
+// import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
 
 export default {
   name: "App",
   components: {
-    // HomeNavbar,
-    CustNavbar,
+    HomeNavbar,
+    // CustNavbar,
     FooterPage,
   },
 };

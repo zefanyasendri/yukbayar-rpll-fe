@@ -6,37 +6,63 @@
       <div class="input_item">
         <label for="fname">Nama Lengkap</label>
         <div class="regis_input">
-          <input type="text" name="firstName" id="fname" value="Nama Depan" />
+          <input
+            type="text"
+            v-model="person.firstName"
+            id="fname"
+            placeholder="Nama Depan"
+          />
         </div>
         <div class="regis_input">
-          <input type="text" name="lastName" id="fname" value="Nama Belakang" />
+          <input
+            type="text"
+            v-model="person.lastName"
+            id="fname"
+            placeholder="Nama Belakang"
+          />
         </div>
       </div>
       <div class="input_item">
         <label for="verify">Email dan Password</label>
         <div class="regis_input">
-          <input type="text" name="email" id="verify" value="Email" />
+          <input
+            type="text"
+            v-model="person.email"
+            id="verify"
+            placeholder="Email"
+          />
         </div>
         <div class="regis_input">
-          <input type="text" name="password" id="verify" value="Password" />
+          <input
+            type="password"
+            v-model="person.password"
+            id="password"
+            placeholder="Password"
+          />
+          <i
+            class="fa fa-eye"
+            aria-hidden="true"
+            id="eye"
+            v-on:click="toggle()"
+          ></i>
         </div>
       </div>
       <div class="input_item">
         <label for="genderLabel">Jenis Kelamin</label>
         <div class="gender_input genderMargin">
-          <input type="radio" name="gender" id="genderLabel" /><span
+          <input type="radio" v-model="person.gender" id="genderLabel" /><span
             class="genderChoice"
             >Laki-Laki</span
           >
         </div>
         <div class="gender_input">
-          <input type="radio" name="gender" id="genderLabel" /><span
+          <input type="radio" v-model="person.gender" id="genderLabel" /><span
             class="genderChoice"
             >Perempuan</span
           >
         </div>
         <div class="gender_input">
-          <input type="radio" name="gender" id="genderLabel" /><span
+          <input type="radio" v-model="person.gender" id="genderLabel" /><span
             class="genderChoice"
             >Lainnya</span
           >
@@ -45,7 +71,7 @@
       <div class="birthday_item">
         <label for="birthday">Tanggal Lahir</label>
         <div class="birthday_input">
-          <input type="date" name="email" id="birthday" />
+          <input type="date" v-model="person.birthday" id="birthday" />
         </div>
       </div>
       <div class="btn_submit">
@@ -57,9 +83,40 @@
           >
         </div>
       </div>
+      <span style="color: white">{{ person.password }}</span>
     </div>
   </div>
 </template>
+<script>
+var state = false;
+
+export default {
+  name: "SignUp",
+  data() {
+    return {
+      person: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        gender: "",
+        birthday: "",
+      },
+    };
+  },
+  methods: {
+    toggle() {
+      if (state) {
+        document.getElementById("password").setAttribute("type", "password");
+        state = false;
+      } else {
+        document.getElementById("password").setAttribute("type", "text");
+        state = true;
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 .register {
@@ -130,7 +187,7 @@
   border: none;
   outline: none;
   padding-left: 10px;
-  color: rgba(0, 0, 0, 0.5);
+  color: black;
 }
 .genderChoice {
   padding-left: 5px;

@@ -7,7 +7,7 @@
         </div>
         <ul v-show="!mobile" class="MyNavigation">
           <li>
-            <router-link class="link" :to="{ path: '/' }">Home</router-link>
+            <router-link class="link" :to="{ path: '/home' }">Home</router-link>
           </li>
           <li>
             <router-link class="link" :to="{ path: '/topUp' }"
