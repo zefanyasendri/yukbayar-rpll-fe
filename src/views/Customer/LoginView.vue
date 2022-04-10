@@ -5,11 +5,27 @@
       <div class="input_item">
         <div class="login_input input_email">
           <i class="far fa-envelope"></i>
-          <input type="text" name="email" id="email" value="Email Address" />
+          <input
+            type="text"
+            v-model="person.email"
+            id="email"
+            placeholder="Email Address"
+          />
         </div>
         <div class="login_input">
           <i class="far fa-lock"></i>
-          <input type="text" name="password" id="password" value="Password" />
+          <input
+            type="password"
+            v-model="person.password"
+            id="password"
+            placeholder="Password"
+          />
+          <i
+            class="fa fa-eye"
+            aria-hidden="true"
+            id="eye"
+            v-on:click="toggle()"
+          ></i>
         </div>
       </div>
       <div class="btn_submit">
@@ -24,6 +40,32 @@
     </div>
   </div>
 </template>
+<script>
+var state = false;
+
+export default {
+  name: "SignIn",
+  data() {
+    return {
+      person: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    toggle() {
+      if (state) {
+        document.getElementById("password").setAttribute("type", "password");
+        state = false;
+      } else {
+        document.getElementById("password").setAttribute("type", "text");
+        state = true;
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 .login {

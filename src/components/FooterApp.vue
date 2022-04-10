@@ -17,7 +17,7 @@
 
 <style scoped>
 .footer {
-  margin-top: 8rem;
+  margin-top: 5rem;
   padding: 4rem;
 }
 </style>

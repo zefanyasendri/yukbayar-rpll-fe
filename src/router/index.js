@@ -3,14 +3,19 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-//add component
+//home component
+import Home from '../views/HomePageView.vue'
+import RegisterView from '../views/Customer/RegisterView.vue'
+import AboutView from '../views/Customer/AboutView.vue'
+import LoginView from '../views/Customer/LoginView.vue'
+
+//customer component (main)
 import HomeView from '../views/Customer/HomeView.vue'
 import HistoryView from '../views/Customer/HistoryView.vue'
-import LoginView from '../views/Customer/LoginView.vue'
 import TopUpView from '../views/Customer/TopUpView.vue'
-import RegisterView from '../views/Customer/RegisterView'
-import AboutView from '../views/Customer/AboutView.vue'
 import ProfileView from '../views/Customer/ProfileView.vue'
+
+//customer component (transaksi PLN)
 import PLNView from '@/views/Customer/Transaksi/PLNView.vue'
 import PLNTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/TagihanPLN.vue'
 import PLNToken from '@/views/Customer/Transaksi/Pembayaran/PLN/TokenPLN.vue'
@@ -18,18 +23,28 @@ import PLNKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfirmasiP
 import PLNKonfirmasiTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfimasiPLNTagihan.vue'
 import PLNBerhasil from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLN.vue'
 import PLNBerhasilTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLNTagihan.vue'
+
+//customer component (transaksi asuransi)
 import AsuransiView from '@/views/Customer/Transaksi/AsuransiView.vue'
 import AsuransiKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/Asuransi/KonfirmasiAsuransi.vue'
 import AsuransiBerhasil from '@/views/Customer/Transaksi/Pembayaran/Asuransi/BerhasilAsuransi.vue'
+
+//customer component (transaksi BPJS)
 import BPJSView from '@/views/Customer/Transaksi/BPJSView.vue'
 import BPJSKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/BPJS/KonfirmasiBPJS.vue'
 import BPJSBerhasil from '@/views/Customer/Transaksi/Pembayaran/BPJS/BerhasilBPJS.vue'
+
+//customer component (transaksi PDAM)
 import PDAMView from '@/views/Customer/Transaksi/PDAMView.vue'
 import PDAMKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PDAM/KonfirmasiPDAM.vue'
 import PDAMBerhasil from '@/views/Customer/Transaksi/Pembayaran/PDAM/BerhasilPDAM.vue'
+
+//customer component (transaksi internet)
 import InternetView from '@/views/Customer/Transaksi/InternetView.vue'
 import InternetKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/Internet/KonfirmasiInternet.vue'
 import InternetBerhasil from '@/views/Customer/Transaksi/Pembayaran/Internet/BerhasilInternet.vue'
+
+//customer component (transaksi PBB)
 import PBBView from '@/views/Customer/Transaksi/PBBView.vue'
 import PBBKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PBB/KonfirmasiPBB.vue'
 import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.vue'
@@ -37,7 +52,7 @@ import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.v
 const routes = [{
         path: '/',
         name: 'home',
-        component: HomeView
+        component: Home
     },
     {
         path: '/about',
@@ -46,6 +61,21 @@ const routes = [{
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: AboutView
+    },
+        {
+        path: '/login',
+        name : 'login',
+        component: LoginView
+    },
+    {
+        path: '/register',
+        name : 'register',
+        component: RegisterView
+    },
+    {
+        path: '/home',
+        name: 'userhome',
+        component: HomeView
     },
     {
         path: '/history',
@@ -56,16 +86,6 @@ const routes = [{
         path: '/profile',
         name: 'profile',
         component: ProfileView
-    },
-    {
-        path: '/login',
-        name : 'login',
-        component: LoginView
-    },
-    {
-        path: '/register',
-        name : 'register',
-        component: RegisterView
     },
     {
         path:'/topup',
