@@ -10,13 +10,23 @@
       </div>
     </div>
 
+    <div class="columns">
+      <div class="column is-12">
+        <div class="field">
+          <p class="control">
+            <button class="button is-rounded has-text-weight-bold subtitle is-5">Unggah Foto</button>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
         <label class="label subtitle is-4">Name</label>
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="Alex Smith" disabled>
+        <input class="input subtitle is-4" type="text" value="Alex Smith">
       </div>
     </div>
 
@@ -32,11 +42,21 @@
     
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
-        <label class="label subtitle is-4">Password</label>
+        <label class="label subtitle is-4">Password Lama</label>
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="password" value="***************" disabled>
+        <input class="input subtitle is-4" type="password" value="***************">
+      </div>
+    </div>
+
+    <div class="field columns is-family-sans-serif">
+      <div class="column is-3 has-text-left mt-3">
+        <label class="label subtitle is-4">Password Baru</label>
+      </div>
+      <div class="column is-1 mt-3"> : </div>
+      <div class="control column is-8">
+        <input class="input subtitle is-4" type="password" value="***************">
       </div>
     </div>
 
@@ -46,7 +66,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="081549384953" disabled>
+        <input class="input subtitle is-4" type="text" value="081549384953">
       </div>
     </div>
 
@@ -72,7 +92,7 @@
 
     <div class="field">
       <p class="control">
-        <button class="button is-rounded has-text-weight-bold subtitle is-5">Ubah Profile</button>
+        <button class="button is-rounded has-text-weight-bold subtitle is-5">Simpan</button>
       </p>
     </div>
   </div>
@@ -92,13 +112,10 @@
   .button {
     background-color: #223196;
     color: white;
-    padding: 1rem 5rem;
+    padding: 1rem 4rem;
   }
   .button:hover {
     color: white;
     background-color: #192676;
-  }
-  .input {
-    background-color: rgb(250, 250, 250);
   }
 </style>

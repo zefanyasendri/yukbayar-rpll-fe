@@ -4,11 +4,11 @@
         <div class="box is-align-content-center is-family-sans-serif">
             <div class="columns is-gapless is-multiline is-mobile">
                 <div class="column is-half has-text-left ml-6">
-                    <p class="title is-4 has-text-weight-bold">PLN</p>
-                    <p class="subtitle is-6">Pembayaran</p>
+                    <p class="title is-3 has-text-weight-bold">PLN</p>
+                    <p class="subtitle is-5">Pembayaran</p>
                 </div>
                 <div class="column auto has-text-right">
-                    <p class="price is-size-4 has-text-weight-bold mr-6 pt-1">-100.000</p>
+                    <p class="price is-size-3 has-text-weight-bold mr-6 pt-1">-Rp 100.000</p>
                 </div>
             </div>
         </div>
@@ -16,11 +16,23 @@
         <div class="box is-align-content-center is-family-sans-serif">
             <div class="columns is-gapless is-multiline is-mobile">
                 <div class="column is-half has-text-left ml-6">
-                    <p class="title is-4 has-text-weight-bold">PLN</p>
-                    <p class="subtitle is-6">Pembayaran</p>
+                    <p class="title is-3 has-text-weight-bold">PLN</p>
+                    <p class="subtitle is-5">Pembayaran</p>
                 </div>
                 <div class="column auto has-text-right">
-                    <p class="price is-size-4 has-text-weight-bold mr-6">-50.000</p>
+                    <p class="price is-size-3 has-text-weight-bold mr-6">-Rp 50.000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="box is-align-content-center is-family-sans-serif">
+            <div class="columns is-gapless is-multiline is-mobile">
+                <div class="column is-half has-text-left ml-6">
+                    <p class="title is-3 has-text-weight-bold">BPJS</p>
+                    <p class="subtitle is-5">Pembayaran</p>
+                </div>
+                <div class="column auto has-text-right">
+                    <p class="price is-size-3 has-text-weight-bold mr-6">-Rp 150.000</p>
                 </div>
             </div>
         </div>
@@ -38,7 +50,7 @@
 <style scoped>
     .container {
         width: 75%;
-        padding-top: 6rem;
+        padding-top: 1rem;
     }
     .price, .title, .subtitle {
         color: #1256F9;
