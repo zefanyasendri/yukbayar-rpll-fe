@@ -19,13 +19,11 @@ export default {
   data() {
     return {
       slides: [
-        require("@/assets/Home/item1.jpg"),
-        "https://picsum.photos/id/231/600/300",
-        "https://picsum.photos/id/232/600/300",
-        "https://picsum.photos/id/233/600/300",
-        "https://picsum.photos/id/234/600/300",
-        "https://picsum.photos/id/235/600/300",
-        "https://picsum.photos/id/236/600/300",
+        require("@/assets/Home/Promosi/Promosi_9.png"),
+        require("@/assets/Home/Promosi/Promosi_8.png"),
+        require("@/assets/Home/Promosi/Promosi_5.png"),
+        require("@/assets/Home/Promosi/Promosi_6.png"),
+        require("@/assets/Home/Promosi/Promosi_7.png"),
       ],
     };
   },
