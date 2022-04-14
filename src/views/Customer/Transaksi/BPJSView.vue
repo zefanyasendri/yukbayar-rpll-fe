@@ -4,10 +4,10 @@
         <img id="img_main" src="@/assets/Home/BPJS.png"/>
         <div class='input_content'>
           <h1 id="txt_nomortagihan">Masukkan Nomor BPJS</h1>
-          <input type="text" name='input_nomor' id='tagihan_asuransi' maxlength="20" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          <input type="text" name='input_nomor' v-model="bpjs.nomor_bpjs" id='tagihan_asuransi' maxlength="20" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
           <div id="dropdown_waktu">
             <h1>Sampai Dengan</h1>
-                <select v-model="selected" class="pilihan_waktu" >
+                <select v-model="bpjs.pilihan_waktu" class="pilihan_waktu" >
                   <option disabled value="">Please select one</option>
                   <option>April 2022</option>
                   <option>Mei 2022</option>
@@ -32,7 +32,21 @@
       </div>
     </div>
 </template>
+<script>
 
+export default {
+  name : "BPJS_View",
+  data() {
+    return {
+      bpjs: {
+        pilihan_waktu: "",
+        nomor_bpjs: ""
+      },
+    };
+  },
+};
+
+</script>
 <style scoped>
 @media screen and (max-width: 667px) {
   .font {

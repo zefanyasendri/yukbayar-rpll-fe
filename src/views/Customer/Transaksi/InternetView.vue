@@ -4,10 +4,10 @@
         <img id="img_main" src="@/assets/Home/Internet.png"/>
         <div class='input_content'>
           <h1 id="txt_nomortagihan">Masukkan Nomor Pelanggan</h1>
-          <input type="text" name='input_nomor' id='tagihan_internet' maxlength="16" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          <input type="text" name='input_nomor' v-model="internet.nomor_asuransi" id='tagihan_internet' maxlength="16" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
           <div id="dropdown_domain">
             <h1>Silahkan Pilih Domain</h1>
-                <select v-model="selected" class="pilihan_domain" >
+                <select v-model="internet.pilihan_domain" class="pilihan_domain" >
                   <option disabled value="">Please select one</option>
                   <option>Indihome</option>
                   <option>MyRepublic</option>
@@ -23,6 +23,22 @@
       </div>
     </div>
 </template>
+
+<script>
+
+export default {
+  name : "Internet_View",
+  data() {
+    return {
+      internet: {
+        pilihan_domain: "",
+        nomor_pelanggan: ""
+      },
+    };
+  },
+};
+
+</script>
 
 <style scoped>
 @media screen and (max-width: 667px) {

@@ -20,11 +20,11 @@
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">011015209051234512</h1>
-              <h1 class="con_kanan">PBB Kab Bandung</h1>
-              <h1 class="con_kanan">2021</h1>
-              <h1 class="con_kanan">594486395839</h1>
-              <h1 class="con_kanan">Hanx Xxxxxx Sxxxxx Xxxba</h1>
+              <h1 class="con_kanan">{{order.nomor_pelanggan}}</h1>
+              <h1 class="con_kanan">{{order.pilihan_lokasi}}</h1>
+              <h1 class="con_kanan">{{order.pilihan_tahun}}</h1>
+              <h1 class="con_kanan">{{order.id_user}}</h1>
+              <h1 class="con_kanan">{{order.nama_user}}</h1>
           </div>
           
         </div> 
@@ -45,9 +45,9 @@
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">Rp 100.000</h1>
-              <h1 class="con_kanan">Rp 2.000</h1>
-              <h1 class="con_kanan">Rp 102.000</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya_pajak}}</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya_administrasi}}</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya_pajak + order.biaya_administrasi}}</h1>
           </div>
         </div>
       </div>
@@ -63,6 +63,27 @@
       </div>
     </div>
 </template>
+
+<script>
+
+export default {
+  name : "Pajak_Konfirmation",
+  data() {
+    return {
+      order: {
+        nomor_pelanggan: "011015209051234512",
+        pilihan_tahun : "2021",
+        pilihan_lokasi : "PBB Kab Bandung",
+        id_user : "594486395839",
+        nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
+        biaya_pajak: 100000,
+        biaya_administrasi : 2000
+      }
+    };
+  },
+};
+
+</script>
 
 <style scoped>
 @media screen and (max-width: 667px) {
