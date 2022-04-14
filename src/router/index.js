@@ -173,11 +173,11 @@ const routes = [{
         component:PBBView
     },{
         path:'/customer/transaksi/Pajak/konfirmasi',
-        name:'konfirmasiinternet',
+        name:'konfirmasipajak',
         component:PBBKonfirmasi
     },{
         path:'/customer/transaksi/Pajak/konfirmasi/berhasil',
-        name:'berhasilinternet',
+        name:'berhasilpajak',
         component:PBBBerhasil
     }
 ]

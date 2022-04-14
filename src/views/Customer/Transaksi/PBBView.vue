@@ -4,10 +4,10 @@
         <img id="img_main" src="@/assets/Home/Pajak.png"/>
         <div class='input_content'>
           <h1 id="txt_nomortagihan">Masukkan Nomor Objek Pajak</h1>
-          <input type="text" name='input_nomor' id='tagihan_pbb' minlength="18" maxlength="18" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          <input type="text" name='input_nomor' v-model="pbb.nomor_pelanggan" id='tagihan_pbb' minlength="18" maxlength="18" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
           <div id="dropdown_domain">
             <h1>Silahkan Pilih Lokasi</h1>
-                <select v-model="selected" class="pilihan_domain" >
+                <select v-model="pbb.pilihan_lokasi" class="pilihan_domain" >
                   <option disabled value="">Please select one</option>
                   <option>PBB Kab Bandung</option>
                   <option>PBB Kab Bandung Barat</option>
@@ -18,7 +18,7 @@
           </div>
           <div id="dropdown_domain">
             <h1>Silahkan Pilih Tahun Pembayaran</h1>
-                <select v-model="selected" class="pilihan_domain" >
+                <select v-model="pbb.pilihan_tahun" class="pilihan_domain" >
                   <option disabled value="">Please select one</option>
                   <option>2022</option>
                   <option>2021</option>
@@ -37,6 +37,23 @@
       </div>
     </div>
 </template>
+
+<script>
+
+export default {
+  name : "PBB_View",
+  data() {
+    return {
+      pbb: {
+        pilihan_lokasi: "",
+        pilihan_tahun: "",
+        nomor_pelanggan: ""
+      },
+    };
+  },
+};
+
+</script>
 
 <style scoped>
 @media screen and (max-width: 667px) {

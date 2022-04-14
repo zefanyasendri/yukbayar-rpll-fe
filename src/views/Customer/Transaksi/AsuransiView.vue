@@ -4,7 +4,7 @@
         <img id="img_main" src="@/assets/Home/Asuransi.png"/>
         <div class='input_content'>
           <h1 id="txt_nomortagihan">Masukkan Nomor Polis Asuransi/Nomor Klaim</h1>
-          <input type="text" name='input_nomor' id='tagihan_asuransi' maxlength="16" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          <input type="text" name='input_nomor' v-model="asuransi.nomor_asuransi" id='tagihan_asuransi' maxlength="16" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
       </div>
       <div class="button_lanjut">
@@ -14,6 +14,21 @@
       </div>
     </div>
 </template>
+
+<script>
+
+export default {
+  name : "Asuransi_View",
+  data() {
+    return {
+      asuransi: {
+        nomor_asuransi: ""
+      },
+    };
+  },
+};
+
+</script>
 
 <style scoped>
 @media screen and (max-width: 667px) {

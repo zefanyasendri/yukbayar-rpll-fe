@@ -4,10 +4,10 @@
         <img id="img_main" src="@/assets/Home/PDAM.png"/>
         <div class='input_content'>
           <h1 id="txt_nomortagihan">Masukkan Nomor Pelanggan</h1>
-          <input type="text" name='input_nomor' id='tagihan_pdam' maxlength="20" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+          <input type="text" v-model="pdam.nomor_pelangganq" name='input_nomor' id='tagihan_pdam' maxlength="20" style='width: 300px; height: 50px;' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
           <div id="dropdown_lokasi">
             <h1>Silahkan Pilih Lokasi</h1>
-                <select v-model="selected" class="pilihan_lokasi" >
+                <select v-model="pdam.pilihan_lokasi" class="pilihan_lokasi" >
                   <option disabled value="">Please select one</option>
                   <option>Jawa Barat - Kab Sumedang</option>
                   <option>Sulawesi - Kota Palopo</option>
@@ -32,6 +32,22 @@
       </div>
     </div>
 </template>
+
+<script>
+
+export default {
+  name : "PDAM_View",
+  data() {
+    return {
+      pdam: {
+        pilihan_lokasi: "",
+        nomor_pelanggan: ""
+      },
+    };
+  },
+};
+
+</script>
 
 <style scoped>
 @media screen and (max-width: 667px) {
