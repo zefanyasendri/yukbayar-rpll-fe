@@ -4,7 +4,7 @@
             <img id="PLN" src="@/assets/Home/PLN.png"/>
             <div class="box_atas_2">
               <h1 id="txt_nomortoken">Masukkan Nomor Meter</h1>
-              <input type="text" name='input_notagihan' id='input_tagihan_pln' style='width: 80%; height: 3.5em; display: flex;' maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+              <input type="text" name='input_notagihan' v-model="pln.nomor_pelanggan" id='input_tagihan_pln' style='width: 80%; height: 3.5em; display: flex;' maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
               <!--Max Length di set ke 12 karna biasanya nomor tagihan PLN itu 12 angka-->
 
             </div>
@@ -18,63 +18,64 @@
               <section>
                 <div class="all_radio">
                     <!--Button 20rb-->
-                    <span class="border_atas"><input type="radio" name='select' id='c_01' value='1'>
-                    <label for='c_01'>
-                      <h2>
-                        Rp 20.000
-                      </h2>
-                    </label>
+                    <span class="border_atas">
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id='c_01' value='1'>
+                        <label for='c_01'>
+                          <h2>
+                            Rp 20.000
+                          </h2>
+                        </label>
                     </span>
                     <span class="border_atas">
                     <!--Button 50rb-->
-                    <input type="radio" name='select' id ='c_02' value='2'>
-                    <label for='c_02'>
-                      <h2>
-                        Rp 50.000
-                      </h2>
-                    </label>
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id ='c_02' value='2'>
+                        <label for='c_02'>
+                          <h2>
+                            Rp 50.000
+                          </h2>
+                        </label>
                     </span>
                     <span class="border_atas">
                     <!--Button 100rb-->
-                    <input type="radio" name='select' id='c_03' value='3'>
-                    <label for='c_03'>
-                      <h2>
-                        Rp 100.000
-                      </h2>
-                    </label>
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id='c_03' value='3'>
+                        <label for='c_03'>
+                          <h2>
+                            Rp 100.000
+                          </h2>
+                        </label>
                     </span>
                     <!--Button 150rb-->
                     <span class="border_atas">
-                    <input type="radio" name='select' id='c_04' value='4'>
-                    <label for='c_04'>
-                      <h2>
-                        Rp 150.000
-                      </h2>
-                    </label>
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id='c_04' value='4'>
+                        <label for='c_04'>
+                          <h2>
+                            Rp 150.000
+                          </h2>
+                        </label>
                     </span>
                     <span class="border_atas">
                     <!--Button 500rb-->
-                    <input type="radio" name='select' id='c_05' value='5'>
-                    <label for='c_05'>
-                      <h2>
-                        Rp 500.000
-                      </h2>
-                    </label>
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id='c_05' value='5'>
+                        <label for='c_05'>
+                          <h2>
+                            Rp 500.000
+                          </h2>
+                        </label>
                     </span>
                     <span class="border_atas">
                     <!--Button 1jt-->
-                    <input type="radio" name='select' id='c_06' value='6'>
-                    <label for='c_06'>
-                      <h2>
-                        Rp 1.000.000
-                      </h2>
-                    </label>
+                      <input type="radio" name='select' v-model="pln.pilihan_saldo" id='c_06' value='6'>
+                        <label for='c_06'>
+                          <h2>
+                            Rp 1.000.000
+                          </h2>
+                        </label>
                     </span>
                   </div>
               </section>
             </div>
         <div class="bagian_bawah">
-          <select name='kupon' id='kupon_dropdown' >
+          <select name='kupon' id='kupon_dropdown' v-model="pln.kupon" >
             <option value='kupon_1'>Kupon 10% YukPay Akhir Bulan</option>
             <option value='kupon_2'>Kupon 5% Anniversary YukBayar</option>
           </select>
@@ -86,7 +87,22 @@
         </div>
     </div>
 </template>
+<script>
 
+export default {
+  name : "PLN_Token",
+  data() {
+    return {
+      pln: {
+        nomor_pelanggan: "",
+        pilihan_saldo: "",
+        kupon: ""
+      },
+    };
+  },
+};
+
+</script>
 <style scoped>
 @media screen and (max-width: 667px) {
   .font {

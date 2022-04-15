@@ -2,7 +2,7 @@
     <div class="all">
       <img id="PLN" src="@/assets/Home/PLN.png"/>
       <h1 id="txt_nomortoken">Masukkan Nomor Meter</h1>
-      <input type="text" name='input_notagihan' id='tagihan_pln' style='width: 300px; height: 50px;'/>
+      <input type="text" name='input_notagihan' v-model="pln.nomor_pelanggan" id='tagihan_pln' style='width: 300px; height: 50px;'/>
       <div class="button_listrik">
         <router-link to="/Customer/Transaksi/PLN/Tagihan/Konfirmasi">
           <span style="margin-top:2rem;"><button type="button" id="buttonlistrik">Lanjutkan Pembayaran</button></span>
@@ -10,7 +10,20 @@
       </div>
     </div>
 </template>
+<script>
 
+export default {
+  name : "PLN_Tagihan",
+  data() {
+    return {
+      pln: {
+        nomor_pelanggan: ""
+      },
+    };
+  },
+};
+
+</script>
 <style scoped>
 @media screen and (max-width: 667px) {
   .font {
