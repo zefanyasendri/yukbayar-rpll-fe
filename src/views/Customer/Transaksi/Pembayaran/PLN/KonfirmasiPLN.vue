@@ -16,9 +16,9 @@
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">01101520905</h1>
-              <h1 class="con_kanan">594486395839</h1>
-              <h1 class="con_kanan">Hanx Xxxxxx Sxxxxx Xxxba</h1>
+              <h1 class="con_kanan">{{order.nomor_pelanggan}}</h1>
+              <h1 class="con_kanan">{{order.id_user}}</h1>
+              <h1 class="con_kanan">{{order.nama_user}}</h1>
           </div>
           
         </div> 
@@ -41,10 +41,10 @@
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">Rp 100.000</h1>
-              <h1 class="con_kanan">Rp 2.000</h1>
-              <h1 class="con_kanan" style='color:red;'>Rp 10.000</h1>
-              <h1 class="con_kanan">Rp 92.000</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya}}</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya_administrasi}}</h1>
+              <h1 class="con_kanan" style='color:red;'>Rp. {{order.diskon * order.biaya}}</h1>
+              <h1 class="con_kanan">Rp. {{order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi}}</h1>
           </div>
         </div>
       </div>
@@ -60,7 +60,25 @@
       </div>
     </div>
 </template>
+<script>
 
+export default {
+  name : "PLN_Token_Konfirmation",
+  data() {
+    return {
+      order: {
+        nomor_pelanggan: "0110152090512345",
+        id_user : "594486395839",
+        nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
+        biaya: 100000,
+        diskon: 0.1,
+        biaya_administrasi : 2000
+      }
+    };
+  },
+};
+
+</script>
 <style scoped>
 @media screen and (max-width: 667px) {
   .font {
