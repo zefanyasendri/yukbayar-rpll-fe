@@ -72,7 +72,9 @@
 
     <div class="field">
       <p class="control">
-        <button class="button is-rounded has-text-weight-bold subtitle is-5">Ubah Profile</button>
+        <router-link to="/Profile/Update">
+          <button class="button is-rounded has-text-weight-bold subtitle is-5">Ubah Profile</button>
+        </router-link>
       </p>
     </div>
   </div>

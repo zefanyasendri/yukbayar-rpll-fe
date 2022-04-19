@@ -14,6 +14,7 @@ import HomeView from '../views/Customer/HomeView.vue'
 import HistoryView from '../views/Customer/HistoryView.vue'
 import TopUpView from '../views/Customer/TopUpView.vue'
 import ProfileView from '../views/Customer/ProfileView.vue'
+import ProfileEditView from '../views/Customer/ProfileEditView.vue'
 
 //customer component (transaksi PLN)
 import PLNView from '@/views/Customer/Transaksi/PLNView.vue'
@@ -179,6 +180,10 @@ const routes = [{
         path:'/customer/transaksi/Pajak/konfirmasi/berhasil',
         name:'berhasilpajak',
         component:PBBBerhasil
+    },{
+        path:'/profile/update',
+        name:'profileupdate',
+        component:ProfileEditView
     }
 ]
 
