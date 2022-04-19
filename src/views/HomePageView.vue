@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="home_content">
     <carousel>
       <carousel-slide
         v-for="slide in slides"
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-.content {
+.home_content {
   display: flex;
   justify-content: center;
 }
