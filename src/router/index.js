@@ -20,7 +20,7 @@ import PLNView from '@/views/Customer/Transaksi/PLNView.vue'
 import PLNTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/TagihanPLN.vue'
 import PLNToken from '@/views/Customer/Transaksi/Pembayaran/PLN/TokenPLN.vue'
 import PLNKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfirmasiPLN.vue'
-import PLNKonfirmasiTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfimasiPLNTagihan.vue'
+import PLNKonfirmasiTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfirmasiPLNTagihan.vue'
 import PLNBerhasil from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLN.vue'
 import PLNBerhasilTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLNTagihan.vue'
 
