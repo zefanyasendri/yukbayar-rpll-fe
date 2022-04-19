@@ -92,7 +92,9 @@
 
     <div class="field">
       <p class="control">
-        <button class="button is-rounded has-text-weight-bold subtitle is-5">Simpan</button>
+        <router-link to="/Profile">
+          <button class="button is-rounded has-text-weight-bold subtitle is-5">Simpan</button>
+        </router-link>
       </p>
     </div>
   </div>

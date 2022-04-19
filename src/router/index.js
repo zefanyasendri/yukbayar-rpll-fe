@@ -14,13 +14,14 @@ import HomeView from '../views/Customer/HomeView.vue'
 import HistoryView from '../views/Customer/HistoryView.vue'
 import TopUpView from '../views/Customer/TopUpView.vue'
 import ProfileView from '../views/Customer/ProfileView.vue'
+import ProfileEditView from '../views/Customer/ProfileEditView.vue'
 
 //customer component (transaksi PLN)
 import PLNView from '@/views/Customer/Transaksi/PLNView.vue'
 import PLNTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/TagihanPLN.vue'
 import PLNToken from '@/views/Customer/Transaksi/Pembayaran/PLN/TokenPLN.vue'
 import PLNKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfirmasiPLN.vue'
-import PLNKonfirmasiTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfimasiPLNTagihan.vue'
+import PLNKonfirmasiTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/KonfirmasiPLNTagihan.vue'
 import PLNBerhasil from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLN.vue'
 import PLNBerhasilTagihan from '@/views/Customer/Transaksi/Pembayaran/PLN/BerhasilPLNTagihan.vue'
 
@@ -179,6 +180,10 @@ const routes = [{
         path:'/customer/transaksi/Pajak/konfirmasi/berhasil',
         name:'berhasilpajak',
         component:PBBBerhasil
+    },{
+        path:'/profile/update',
+        name:'profileupdate',
+        component:ProfileEditView
     }
 ]
 

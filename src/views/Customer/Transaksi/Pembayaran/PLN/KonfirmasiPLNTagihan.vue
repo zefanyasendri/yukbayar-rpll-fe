@@ -36,7 +36,6 @@
               <h1>:</h1>
               <h1>:</h1>
               <h1>:</h1>
-              <h1>:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
