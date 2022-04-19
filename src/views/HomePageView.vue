@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="content">
     <carousel>
       <carousel-slide
         v-for="slide in slides"
@@ -19,11 +19,11 @@ export default {
   data() {
     return {
       slides: [
+        require("@/assets/Home/Promosi/Promosi_7.png"),
         require("@/assets/Home/Promosi/Promosi_9.png"),
         require("@/assets/Home/Promosi/Promosi_8.png"),
         require("@/assets/Home/Promosi/Promosi_5.png"),
         require("@/assets/Home/Promosi/Promosi_6.png"),
-        require("@/assets/Home/Promosi/Promosi_7.png"),
       ],
     };
   },
@@ -34,8 +34,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
+<style>
+.content {
   display: flex;
   justify-content: center;
 }
