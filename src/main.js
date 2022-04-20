@@ -19,7 +19,7 @@ Vue.use(FontAwesomeIcon);
 Vue.use(VueAxios, Axios);
 
 Vue.prototype.$axios = Axios;
-// Vue.axios.defaults.baseURL = `http://localhost:8080`;
+Vue.axios.defaults.baseURL = `http://localhost:8000`;
 
 new Vue({
   router,
