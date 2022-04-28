@@ -1,9 +1,12 @@
 <template>
     <div class="all">
-          <div class="pembayaran_berhasil">
-            <p>Pembayaran Berhasil <img id='logo_berhasil' src="@/assets/clarity_success-standard-solid.png"/></p>
-          </div>
-          <h1 id='jumlah_pembayaran'>Rp. {{order.biaya}}</h1>
+        <div class="pembayaran_berhasil">
+          <p>Pembayaran Berhasil <img id='logo_berhasil' src="@/assets/clarity_success-standard-solid.png"/></p>
+        </div>
+        <h1 id='jumlah_pembayaran'>Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
+        <p class="saldo_user">
+          Saldo Anda : Rp {{transactionServices.formatPrice(order.saldo_user)}}
+        </p>
         <div class="big_container" style=''>
           <div class="container_1">
               <h1 class="">No.Meter</h1>
@@ -34,6 +37,7 @@
     </div>
 </template>
 <script>
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name : "PLN_Token_Konfirmation",
@@ -44,8 +48,10 @@ export default {
         id_user : "594486395839",
         nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
         biaya: 92000,
-        stroom: "6849-3944-3848-3848-2859"
-      }
+        stroom: "6849-3944-3848-3848-2859",
+        saldo_user:108000
+      },
+      transactionServices: new TransactionServices()
     };
   },
 };
@@ -80,6 +86,12 @@ export default {
     width : 300px;
     justify-content: center;
     margin: auto;
+}
+.saldo_user{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 #logo_berhasil{
     width:25px;
