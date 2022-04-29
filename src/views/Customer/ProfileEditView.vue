@@ -26,7 +26,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="Alex Smith">
+        <input class="input subtitle is-4" type="text" :value="dataProfile.nama">
       </div>
     </div>
 
@@ -36,7 +36,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="email" value="alexsmith@gmail.com" disabled>
+        <input class="input subtitle is-4" type="email" :value="dataProfile.email" disabled>
       </div>
     </div>
     
@@ -46,7 +46,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="password" value="***************">
+        <input class="input subtitle is-4" type="password" :value="profileServices.hidePassword(dataProfile.password)">
       </div>
     </div>
 
@@ -56,7 +56,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="password" value="***************">
+        <input class="input subtitle is-4" type="password" :value="profileServices.hidePassword(dataProfile.password)">
       </div>
     </div>
 
@@ -66,7 +66,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="081549384953">
+        <input class="input subtitle is-4" type="text" :value="dataProfile.noTelpon">
       </div>
     </div>
 
@@ -76,7 +76,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="17 - 8 - 2001" disabled>
+        <input class="input subtitle is-4" type="text" :value="dataProfile.tglLahir" disabled>
       </div>
     </div>
 
@@ -86,7 +86,7 @@
       </div>
       <div class="column is-1 mt-3"> : </div>
       <div class="control column is-8">
-        <input class="input subtitle is-4" type="text" value="Laki-laki" disabled>
+        <input class="input subtitle is-4" type="text" :value="dataProfile.gender" disabled>
       </div>
     </div>
 
@@ -101,7 +101,26 @@
 </template>
 
 <script>
+  import axios from "axios";
+  import ProfileServices from "@/services/ProfileServices"
 
+  export default {
+    mounted() {
+      this.fetchData();
+    },
+    data() {
+      return {
+        dataProfile: [],
+        profileServices: new ProfileServices(),
+      };
+    },
+    methods: {
+      async fetchData() {
+        const res = await axios.get("/users/1");
+        this.dataProfile = res.data.data;
+      },
+    },
+  };
 </script>
 
 <style scoped>
