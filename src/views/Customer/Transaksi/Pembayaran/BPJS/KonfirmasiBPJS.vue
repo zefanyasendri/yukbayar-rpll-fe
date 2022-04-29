@@ -33,18 +33,24 @@
               <h1 class="">Biaya BPJS</h1>
               <h1 class="">Biaya Transaksi</h1>
               <h1 style='font-weight:bold;'>Total Pembayaran</h1>
+              <h1 style='font-weight:bold;'>Saldo Anda</h1>
+              <h1 style='font-weight:bold;'>Saldo Akhir</h1>
           </div>
         
           <div class="container_2">
               <h1>:</h1>
               <h1>:</h1>
               <h1>:</h1>
+              <h1>:</h1>
+              <h1>:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">Rp. {{order.biaya_bpjs}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya_administrasi}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya_administrasi + order.biaya_bpjs}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_bpjs)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_bpjs + order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan" style='color:blue;'>Rp {{transactionServices.formatPrice(order.saldo_user)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.saldo_user - (order.biaya_bpjs + order.biaya_administrasi))}}</h1>
           </div>
         </div>
       </div>
@@ -61,6 +67,7 @@
     </div>
 </template>
 <script>
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name : "BPJS_Konfirmation",
@@ -72,8 +79,10 @@ export default {
         id_user : "594486395839",
         nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
         biaya_bpjs: 100000,
-        biaya_administrasi : 2000
-      }
+        biaya_administrasi : 2000,
+        saldo_user: 200000
+      },
+      transactionServices: new TransactionServices()
     };
   },
 };
@@ -103,6 +112,12 @@ export default {
     display:flex;
     position:relative;
 }
+.saldo_user{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .text_green{
     font-size:1.25rem;
     font-weight: bold;
@@ -126,6 +141,7 @@ export default {
     padding-left: 1rem;
     border: 1px solid white;
     box-shadow: 1px 0.5px 2px 0 black;
+    margin-bottom: -0.15%;
 }
 .big_container{
     display:flex;

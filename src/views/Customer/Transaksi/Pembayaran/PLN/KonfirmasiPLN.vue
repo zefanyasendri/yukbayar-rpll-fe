@@ -107,7 +107,7 @@ export default {
 }
 .all{
     margin-top: -1rem;
-    margin-left: 7rem;
+    margin-left: 10%;
     text-align: left;
     display:flex;
     position:relative;
@@ -132,6 +132,7 @@ export default {
     font-size:1.25rem;
 }
 .con_kanan{
+    margin-bottom:-0.15rem;
     padding-left: 1rem;
     border: 1px solid white;
     box-shadow: 1px 0.5px 2px 0 black;

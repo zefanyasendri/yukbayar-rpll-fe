@@ -3,7 +3,10 @@
           <div class="pembayaran_berhasil">
             <p>Pembayaran Berhasil <img id='logo_berhasil' src="@/assets/clarity_success-standard-solid.png"/></p>
           </div>
-          <h1 id='jumlah_pembayaran'>Rp. {{order.biaya_asuransi + order.biaya_administrasi}}</h1>
+          <h1 id='jumlah_pembayaran'>Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
+        <p class="saldo_user">
+          Saldo Anda : Rp {{transactionServices.formatPrice(order.saldo_user)}}
+        </p>
         <div class="big_container" style=''>
           <div class="container_1">
               <h1 class="">No. Asuransi</h1>
@@ -31,6 +34,7 @@
     </div>
 </template>
 <script>
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name : "Asuransi_Konfirmation",
@@ -40,9 +44,10 @@ export default {
         nomor_asuransi: "0110152090512345",
         id_user : "594486395839",
         nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
-        biaya_asuransi: 100000,
-        biaya_administrasi : 2000
-      }
+        biaya: 102000,
+        saldo_user: 98000
+      },
+      transactionServices: new TransactionServices()
     };
   },
 };
@@ -67,6 +72,12 @@ export default {
 }
 .all{
     position:relative;
+}
+.saldo_user{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .pembayaran_berhasil{
     font-size:1.25rem;
