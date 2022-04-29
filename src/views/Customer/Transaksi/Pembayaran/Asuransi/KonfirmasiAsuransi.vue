@@ -30,18 +30,24 @@
               <h1 class="">Biaya Asuransi</h1>
               <h1 class="">Biaya Transaksi</h1>
               <h1 style='font-weight:bold;'>Total Pembayaran</h1>
+              <h1 style='font-weight:bold;'>Saldo Anda</h1>
+              <h1 style='font-weight:bold;'>Saldo Akhir</h1>
           </div>
         
           <div class="container_2">
               <h1>:</h1>
               <h1>:</h1>
               <h1>:</h1>
+              <h1>:</h1>
+              <h1>:</h1>
           </div>
-
+          
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">Rp. {{order.biaya_asuransi}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya_administrasi}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya_asuransi + order.biaya_administrasi}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_asuransi)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_asuransi + order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan" style='color:blue;'>Rp {{transactionServices.formatPrice(order.saldo_user)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.saldo_user - (order.biaya_asuransi + order.biaya_administrasi))}}</h1>
           </div>
         </div>
       </div>
@@ -59,6 +65,7 @@
 </template>
 
 <script>
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name : "Asuransi_Konfirmation",
@@ -69,8 +76,10 @@ export default {
         id_user : "594486395839",
         nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
         biaya_asuransi: 100000,
-        biaya_administrasi : 2000
-      }
+        biaya_administrasi : 2000,
+        saldo_user: 200000
+      },
+      transactionServices: new TransactionServices()
     };
   },
 };

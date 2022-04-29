@@ -132,6 +132,7 @@ export default {
     padding-left: 1rem;
     border: 1px solid white;
     box-shadow: 1px 0.5px 2px 0 black;
+    margin-bottom:-0.15rem;
 }
 .big_container{
     display:flex;
