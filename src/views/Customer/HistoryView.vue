@@ -52,13 +52,19 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 75%;
-  padding-top: 1rem;
-}
-.price,
-.title,
-.subtitle {
-  color: #1256f9;
-}
+  .container {
+    width: 75%;
+    padding-top: 1rem;
+  }
+  .title,
+  .subtitle {
+    color: #1256f9;
+  }
+  .price,
+  .out {
+    color: red;
+  }
+  .in {
+    color: green;
+  }
 </style>
