@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+    <!-- <BONavbar /> -->
     <CustNavbar />
-    <HomeNavbar />
+    <!-- <HomeNavbar /> -->
+    <!-- <StaffNavbar /> -->
     <router-view />
     <FooterPage />
   </div>
@@ -9,6 +11,8 @@
 
 <script>
 // import HomeNavbar from "./components/Navigation/HomeNavbar";
+// import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
+// import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
 import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
 
@@ -18,6 +22,8 @@ export default {
     // HomeNavbar,
     CustNavbar,
     FooterPage,
+    // BONavbar,
+    // StaffNavbar,
   },
 };
 </script>
