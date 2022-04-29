@@ -50,6 +50,10 @@ import PBBView from '@/views/Customer/Transaksi/PBBView.vue'
 import PBBKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PBB/KonfirmasiPBB.vue'
 import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.vue'
 
+//Staff
+import DataAkunView from '@/views/Staff/DataAkunView.vue'
+import DaftarMitraView from '@/views/Staff/DaftarMitraView.vue'
+
 const routes = [{
         path: '/',
         name: 'home',
@@ -184,6 +188,14 @@ const routes = [{
         path:'/profile/update',
         name:'profileupdate',
         component:ProfileEditView
+    },{
+        path:'/staff/dataakun',
+        name:'dataakun',
+        component:DataAkunView
+    },{
+        path:'/staff/daftarmitra',
+        name:'daftarmitra',
+        component:DaftarMitraView
     }
 ]
 
