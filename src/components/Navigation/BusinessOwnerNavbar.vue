@@ -7,13 +7,13 @@
         </div>
         <ul v-show="!mobile" class="MyNavigation">
           <li>
-            <router-link class="link" :to="{ path: '/pendapatan' }">Pendapatan</router-link>
+            <router-link class="link" :to="{ path: '/bo/pendapatan' }">Pendapatan</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/transaksipelanggan' }">Transaksi Pelanggan</router-link>
+            <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }">Transaksi Pelanggan</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/listpartner' }">List Partner</router-link>
+            <router-link class="link" :to="{ path: '/bo/listmitra' }">List Partner</router-link>
           </li>
           <li>
             <router-link class="link" :to="{ path: '/logout' }">Logout</router-link>
@@ -30,13 +30,13 @@
         <transition name="mobile-nav">
           <ul v-show="mobileNav" class="dropdown-nav">
             <li>
-                <router-link class="link" :to="{ path: '/pendapatan' }">Pendapatan</router-link>
+                <router-link class="link" :to="{ path: '/bo/pendapatan' }">Pendapatan</router-link>
             </li>
             <li>
-                <router-link class="link" :to="{ path: '/transaksipelanggan' }">Transaksi Pelanggan</router-link>
+                <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }">Transaksi Pelanggan</router-link>
             </li>
             <li>
-                <router-link class="link" :to="{ path: '/listpartner' }">List Partner</router-link>
+                <router-link class="link" :to="{ path: '/bo/listmitra' }">List Partner</router-link>
             </li>
             <li>
                 <router-link class="link" :to="{ path: '/logout' }">Logout</router-link>

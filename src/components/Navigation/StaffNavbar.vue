@@ -7,7 +7,7 @@
         </div>
         <ul v-show="!mobile" class="MyNavigation">
           <li>
-            <router-link class="link" :to="{ path: '/staff/transaksi' }">Transaksi</router-link>
+            <router-link class="link" :to="{ path: '/staff/transaksipelanggan' }">Transaksi</router-link>
           </li>
           <li>
             <router-link class="link" :to="{ path: '/staff/daftarmitra' }">Daftar Mitra</router-link>
@@ -30,7 +30,7 @@
         <transition name="mobile-nav">
           <ul v-show="mobileNav" class="dropdown-nav">
             <li>
-                <router-link class="link" :to="{ path: '/staff/transaksi' }">Transaksi</router-link>
+                <router-link class="link" :to="{ path: '/staff/transaksipelanggan' }">Transaksi</router-link>
             </li>
             <li>
                 <router-link class="link" :to="{ path: '/staff/daftarmitra' }">Daftar Mitra</router-link>
