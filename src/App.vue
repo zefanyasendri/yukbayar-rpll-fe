@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <!-- <BONavbar /> -->
-    <CustNavbar />
+    <BONavbar />
+    <!-- <CustNavbar /> -->
     <!-- <HomeNavbar /> -->
     <!-- <StaffNavbar /> -->
     <router-view />
@@ -11,18 +11,18 @@
 
 <script>
 // import HomeNavbar from "./components/Navigation/HomeNavbar";
-// import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
+import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
 // import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
-import CustNavbar from "./components/Navigation/CustNavbar";
+// import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
 
 export default {
   name: "App",
   components: {
     // HomeNavbar,
-    CustNavbar,
+    // CustNavbar,
     FooterPage,
-    // BONavbar,
+    BONavbar,
     // StaffNavbar,
   },
 };
