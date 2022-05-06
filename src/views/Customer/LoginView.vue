@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="btn_submit">
-        <button class="btn_style">Login</button>
+        <button class="btn_style" v-on:click="submitForm">Login</button>
         <div class="login_text">
           <span class="btn_text">Belum memiliki akun?</span>
           <router-link class="link" :to="{ path: '/register' }"
@@ -41,6 +41,8 @@
   </div>
 </template>
 <script>
+// import axios from "axios";
+import LoginService from "@/service/LoginService.js";
 var state = false;
 
 export default {
@@ -51,6 +53,7 @@ export default {
         email: "",
         password: "",
       },
+      loginService: new LoginService(),
     };
   },
   methods: {
@@ -62,6 +65,12 @@ export default {
         document.getElementById("password").setAttribute("type", "text");
         state = true;
       }
+    },
+    submitForm() {
+      let tipeUser;
+      tipeUser = "customer";
+      this.loginService.addToUserType(tipeUser);
+      location.replace("/home");
     },
   },
 };

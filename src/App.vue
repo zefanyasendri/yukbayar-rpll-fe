@@ -1,23 +1,56 @@
 <template>
   <div id="app">
-    <CustNavbar />
-    <HomeNavbar />
+    <div v-if="userType == ''">
+      <HomeNavbar />
+    </div>
+    <div v-if="userType == 'customer'">
+      <CustNavbar />
+    </div>
+    <div v-else-if="userType == 'owner'">
+      <OwnerNavbar />
+    </div>
+    <div v-else-if="userType == 'staff'">
+      <StaffNavbar />
+    </div>
     <router-view />
     <FooterPage />
   </div>
 </template>
 
 <script>
-// import HomeNavbar from "./components/Navigation/HomeNavbar";
+import HomeNavbar from "./components/Navigation/HomeNavbar";
 import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
+import OwnerNavbar from "./components/Navigation/OwnerNavbar";
+import LoginService from "./service/LoginService";
 
 export default {
   name: "App",
+  mounted() {
+    this.fetchData();
+  },
+  data: () => {
+    const data = [];
+    return {
+      userType: "",
+      loginService: new LoginService(),
+
+      data,
+    };
+  },
   components: {
-    // HomeNavbar,
+    HomeNavbar,
     CustNavbar,
     FooterPage,
+    OwnerNavbar,
+  },
+  methods: {
+    async fetchData() {
+      this.userType = this.loginService.getCurrentUserType();
+    },
+    async getUserType() {
+      return this.userType;
+    },
   },
 };
 </script>

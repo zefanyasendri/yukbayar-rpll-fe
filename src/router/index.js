@@ -6,7 +6,6 @@ Vue.use(VueRouter)
 //home component
 import Home from '../views/HomePageView.vue'
 import RegisterView from '../views/Customer/RegisterView.vue'
-import AboutView from '../views/Customer/AboutView.vue'
 import LoginView from '../views/Customer/LoginView.vue'
 
 //customer component (main)
@@ -56,14 +55,6 @@ const routes = [{
         component: Home
     },
     {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: AboutView
-    },
-        {
         path: '/login',
         name : 'login',
         component: LoginView
