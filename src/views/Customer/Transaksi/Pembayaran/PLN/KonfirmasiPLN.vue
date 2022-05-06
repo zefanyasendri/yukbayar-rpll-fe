@@ -31,6 +31,8 @@
               <h1 class="">Biaya Transaksi</h1>
               <h1 style='font-weight:bold;'>Diskon</h1>
               <h1 style='font-weight:bold;'>Total Pembayaran</h1>
+              <h1 style='font-weight:bold;'>Saldo Anda</h1>
+              <h1 style='font-weight:bold;'>Saldo Akhir</h1>
           </div>
         
           <div class="container_2">
@@ -38,13 +40,17 @@
               <h1>:</h1>
               <h1>:</h1>
               <h1>:</h1>
+              <h1>:</h1>
+              <h1>:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">Rp. {{order.biaya}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya_administrasi}}</h1>
-              <h1 class="con_kanan" style='color:red;'>Rp. {{order.diskon * order.biaya}}</h1>
-              <h1 class="con_kanan">Rp. {{order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan" style='color:red;'>Rp {{transactionServices.formatPrice(order.diskon * order.biaya)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan" style='color:blue;'>Rp {{transactionServices.formatPrice(order.saldo_user)}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.saldo_user - (order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi))}}</h1>
           </div>
         </div>
       </div>
@@ -61,6 +67,7 @@
     </div>
 </template>
 <script>
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name : "PLN_Token_Konfirmation",
@@ -72,8 +79,10 @@ export default {
         nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
         biaya: 100000,
         diskon: 0.1,
-        biaya_administrasi : 2000
-      }
+        biaya_administrasi : 2000,
+        saldo_user: 200000
+      },
+      transactionServices: new TransactionServices()
     };
   },
 };
@@ -98,7 +107,7 @@ export default {
 }
 .all{
     margin-top: -1rem;
-    margin-left: 7rem;
+    margin-left: 10%;
     text-align: left;
     display:flex;
     position:relative;
@@ -123,6 +132,7 @@ export default {
     font-size:1.25rem;
 }
 .con_kanan{
+    margin-bottom:-0.15rem;
     padding-left: 1rem;
     border: 1px solid white;
     box-shadow: 1px 0.5px 2px 0 black;
@@ -132,7 +142,7 @@ export default {
 }
 h1{
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
 }
 .bagian_kiri{
     float:left;

@@ -49,6 +49,16 @@ import PBBView from '@/views/Customer/Transaksi/PBBView.vue'
 import PBBKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PBB/KonfirmasiPBB.vue'
 import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.vue'
 
+//Staff
+import DataAkunView from '@/views/Staff/DataAkunView.vue'
+import DaftarMitraView from '@/views/Staff/DaftarMitraView.vue'
+import TransaksiPelangganView from '@/views/Staff/TransaksiPelangganView.vue'
+
+//BusinessOwner
+import PendapatanView from '@/views/BusinessOwner/PendapatanView.vue'
+import ListMitraView from '@/views/BusinessOwner/ListMitraView.vue'
+import TransaksiPelangganBOView from '@/views/BusinessOwner/TransaksiPelangganView.vue'
+
 const routes = [{
         path: '/',
         name: 'home',
@@ -175,6 +185,30 @@ const routes = [{
         path:'/profile/update',
         name:'profileupdate',
         component:ProfileEditView
+    },{
+        path:'/staff/dataakun',
+        name:'dataakun',
+        component:DataAkunView
+    },{
+        path:'/staff/daftarmitra',
+        name:'daftarmitra',
+        component:DaftarMitraView
+    },{
+        path:'/staff/transaksipelanggan',
+        name:'transaksipelanggan',
+        component:TransaksiPelangganView
+    },{
+        path:'/bo/transaksipelanggan',
+        name:'transaksipelanggan',
+        component:TransaksiPelangganBOView
+    },{
+        path:'/bo/listmitra',
+        name:'listmitra',
+        component:ListMitraView
+    },{
+        path:'/bo/pendapatan',
+        name:'pendapatan',
+        component:PendapatanView
     }
 ]
 

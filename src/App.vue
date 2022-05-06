@@ -12,14 +12,20 @@
     <div v-else-if="userType == 'staff'">
       <StaffNavbar />
     </div>
+    <! -- <BONavbar /> -->
+    <!-- <CustNavbar /> -->
+    <!-- <HomeNavbar /> -->
+    <!-- <StaffNavbar /> -->
     <router-view />
     <FooterPage />
   </div>
 </template>
 
 <script>
-import HomeNavbar from "./components/Navigation/HomeNavbar";
-import CustNavbar from "./components/Navigation/CustNavbar";
+// import HomeNavbar from "./components/Navigation/HomeNavbar";
+import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
+// import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
+// import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
 import OwnerNavbar from "./components/Navigation/OwnerNavbar";
 import LoginService from "./service/LoginService";
@@ -43,6 +49,8 @@ export default {
     CustNavbar,
     FooterPage,
     OwnerNavbar,
+    // BONavbar,
+    // StaffNavbar,
   },
   methods: {
     async fetchData() {
