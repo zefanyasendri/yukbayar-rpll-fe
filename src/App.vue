@@ -1,6 +1,18 @@
 <template>
   <div id="app">
-    <BONavbar />
+    <div v-if="userType == ''">
+      <HomeNavbar />
+    </div>
+    <div v-if="userType == 'customer'">
+      <CustNavbar />
+    </div>
+    <div v-else-if="userType == 'owner'">
+      <OwnerNavbar />
+    </div>
+    <div v-else-if="userType == 'staff'">
+      <StaffNavbar />
+    </div>
+    <! -- <BONavbar /> -->
     <!-- <CustNavbar /> -->
     <!-- <HomeNavbar /> -->
     <!-- <StaffNavbar /> -->
@@ -15,15 +27,38 @@ import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
 // import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
 // import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
+import OwnerNavbar from "./components/Navigation/OwnerNavbar";
+import LoginService from "./service/LoginService";
 
 export default {
   name: "App",
+  mounted() {
+    this.fetchData();
+  },
+  data: () => {
+    const data = [];
+    return {
+      userType: "",
+      loginService: new LoginService(),
+
+      data,
+    };
+  },
   components: {
-    // HomeNavbar,
-    // CustNavbar,
+    HomeNavbar,
+    CustNavbar,
     FooterPage,
-    BONavbar,
+    OwnerNavbar,
+    // BONavbar,
     // StaffNavbar,
+  },
+  methods: {
+    async fetchData() {
+      this.userType = this.loginService.getCurrentUserType();
+    },
+    async getUserType() {
+      return this.userType;
+    },
   },
 };
 </script>

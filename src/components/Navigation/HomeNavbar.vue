@@ -10,11 +10,6 @@
             <router-link class="link" :to="{ path: '/' }">Home</router-link>
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/about' }"
-              >About</router-link
-            >
-          </li>
-          <li>
             <router-link class="link" :to="{ path: '/register' }"
               >Register</router-link
             >
@@ -39,20 +34,12 @@
               <router-link class="link" :to="{ path: '/' }">Home</router-link>
             </li>
             <li>
-              <router-link class="link" :to="{ path: '/' }">TopUp</router-link>
-            </li>
-            <li>
-              <router-link class="link" :to="{ path: '/' }"
-                >History</router-link
-              >
-            </li>
-            <li>
               <router-link class="link" :to="{ path: '/' }"
                 >Register</router-link
               >
             </li>
             <li>
-              <router-link class="link" :to="{ path: '/Login' }"
+              <router-link class="link" :to="{ path: '/login' }"
                 >Login</router-link
               >
             </li>

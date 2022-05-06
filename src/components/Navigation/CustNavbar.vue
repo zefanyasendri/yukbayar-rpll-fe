@@ -24,7 +24,7 @@
               >Profile</router-link
             >
           </li>
-          <li>
+          <li v-on:click="logout">
             <router-link class="link" :to="{ path: '' }">Logout</router-link>
           </li>
         </ul>
@@ -50,14 +50,12 @@
               >
             </li>
             <li>
-              <router-link class="link" :to="{ path: '/' }"
-                >Register</router-link
+              <router-link class="link" :to="{ path: '/profile' }"
+                >Profile</router-link
               >
             </li>
-            <li>
-              <router-link class="link" :to="{ path: '/Login' }"
-                >Login</router-link
-              >
+            <li v-on:click="logout">
+              <router-link class="link" :to="{ path: '' }">Logout</router-link>
             </li>
           </ul>
         </transition>
@@ -67,6 +65,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import LoginService from "@/service/LoginService";
+
 export default {
   name: "MyNavigation",
   data() {
@@ -75,6 +76,8 @@ export default {
       mobile: null,
       mobileNav: null,
       windowWidth: null,
+      userType: "",
+      loginService: new LoginService(),
     };
   },
   created() {
@@ -83,6 +86,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.updateScroll);
+    this.fetchData();
   },
   methods: {
     toggleMobileNav() {
@@ -107,6 +111,14 @@ export default {
       this.mobile = false;
       this.mobileNav = false;
       return;
+    },
+    async fetchData() {
+      await axios.get("/logout");
+    },
+    async logout() {
+      console.log("test");
+      this.loginService.removeUserType();
+      location.replace("/");
     },
   },
 };

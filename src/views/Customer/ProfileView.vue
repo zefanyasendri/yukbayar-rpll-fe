@@ -34,7 +34,7 @@
 
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
-        <label class="label subtitle is-4">Password</label>
+        <label class="label subtitle is-4">Saldo YukPay</label>
       </div>
       <div class="column is-1 mt-3">:</div>
       <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
