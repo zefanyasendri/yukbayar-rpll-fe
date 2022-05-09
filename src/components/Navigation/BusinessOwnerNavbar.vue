@@ -62,7 +62,7 @@
 
 <script>
 import axios from "axios";
-import LoginService from "@/service/LoginService";
+import LoginService from "@/services/LoginService";
 
 export default {
   name: "BussinessOwnerNavigation",
