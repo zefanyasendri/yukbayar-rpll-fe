@@ -3,31 +3,26 @@
     <div v-if="userType == ''">
       <HomeNavbar />
     </div>
-    <div v-if="userType == 'customer'">
+    <div v-else-if="userType == 'customer'">
       <CustNavbar />
     </div>
     <div v-else-if="userType == 'owner'">
-      <OwnerNavbar />
+      <BONavbar />
     </div>
     <div v-else-if="userType == 'staff'">
       <StaffNavbar />
     </div>
-    <! -- <BONavbar /> -->
-    <!-- <CustNavbar /> -->
-    <!-- <HomeNavbar /> -->
-    <!-- <StaffNavbar /> -->
     <router-view />
     <FooterPage />
   </div>
 </template>
 
 <script>
-// import HomeNavbar from "./components/Navigation/HomeNavbar";
+import HomeNavbar from "./components/Navigation/HomeNavbar";
 import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
-// import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
-// import CustNavbar from "./components/Navigation/CustNavbar";
+import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
+import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
-import OwnerNavbar from "./components/Navigation/OwnerNavbar";
 import LoginService from "./service/LoginService";
 
 export default {
@@ -48,9 +43,8 @@ export default {
     HomeNavbar,
     CustNavbar,
     FooterPage,
-    OwnerNavbar,
-    // BONavbar,
-    // StaffNavbar,
+    BONavbar,
+    StaffNavbar,
   },
   methods: {
     async fetchData() {

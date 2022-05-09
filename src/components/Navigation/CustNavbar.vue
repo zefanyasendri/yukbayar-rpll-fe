@@ -116,7 +116,6 @@ export default {
       await axios.get("/logout");
     },
     async logout() {
-      console.log("test");
       this.loginService.removeUserType();
       location.replace("/");
     },

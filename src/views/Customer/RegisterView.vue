@@ -17,7 +17,7 @@
           <input
             type="text"
             v-model="person.lastName"
-            id="fname"
+            id="lname"
             placeholder="Nama Belakang"
           />
         </div>
@@ -48,24 +48,54 @@
         </div>
       </div>
       <div class="input_item">
-        <label for="genderLabel">Jenis Kelamin</label>
+        <p>Jenis Kelamin</p>
         <div class="gender_input genderMargin">
-          <input type="radio" v-model="person.gender" id="genderLabel" /><span
-            class="genderChoice"
-            >Laki-Laki</span
+          <input
+            type="radio"
+            v-model="person.gender"
+            id="male"
+            value="Laki-Laki"
+          />
+          <label for="male" style="padding-left: 5px; color: rgba(0, 0, 0, 0.5)"
+            >Laki-Laki</label
           >
         </div>
         <div class="gender_input">
-          <input type="radio" v-model="person.gender" id="genderLabel" /><span
-            class="genderChoice"
-            >Perempuan</span
+          <input
+            type="radio"
+            v-model="person.gender"
+            id="female"
+            value="Perempuan"
+          />
+          <label
+            for="female"
+            style="padding-left: 5px; color: rgba(0, 0, 0, 0.5)"
+            >Perempuan</label
           >
         </div>
         <div class="gender_input">
-          <input type="radio" v-model="person.gender" id="genderLabel" /><span
-            class="genderChoice"
-            >Lainnya</span
+          <input
+            type="radio"
+            v-model="person.gender"
+            id="other"
+            value="Lainnya"
+          />
+          <label
+            for="other"
+            style="padding-left: 5px; color: rgba(0, 0, 0, 0.5)"
+            >Lainnya</label
           >
+        </div>
+      </div>
+      <div class="phoneNumber_item">
+        <label for="phoneNumber">Nomor HP</label>
+        <div class="phone_input">
+          <input
+            type="text"
+            v-model="person.noHp"
+            id="phoneNumber"
+            placeholder="Nomor HP"
+          />
         </div>
       </div>
       <div class="birthday_item">
@@ -75,7 +105,7 @@
         </div>
       </div>
       <div class="btn_submit">
-        <button class="btn_style">Daftar</button>
+        <button class="btn_style" v-on:click="submitForm">Daftar</button>
         <div class="regis_btn_text">
           <span class="btn_text">Sudah memiliki akun?</span>
           <router-link class="link" :to="{ path: '/login' }"
@@ -83,11 +113,12 @@
           >
         </div>
       </div>
-      <span style="color: white">{{ person.password }}</span>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 var state = false;
 
 export default {
@@ -101,6 +132,8 @@ export default {
         password: "",
         gender: "",
         birthday: "",
+        noHp: "",
+        tipePengguna: "customer",
       },
     };
   },
@@ -113,6 +146,25 @@ export default {
         document.getElementById("password").setAttribute("type", "text");
         state = true;
       }
+    },
+    submitForm() {
+      axios
+        .post("/register", {
+          nama: this.person.firstName + " " + this.person.lastName,
+          noTelpon: this.person.noHp,
+          email: this.person.email,
+          password: this.person.password,
+          tglLahir: this.person.birthday,
+          gender: this.person.gender,
+          tipepengguna: this.person.tipePengguna,
+        })
+        .then((response) => {
+          console.log(response.data);
+          alert("Register Berhasil!!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
@@ -127,7 +179,7 @@ export default {
 }
 .box {
   width: 600px;
-  height: 500px;
+  height: 550px;
   background-color: #152349;
   margin: 0 auto;
   border-radius: 30px;
@@ -136,7 +188,9 @@ export default {
   color: #78ffd7;
   border-bottom: 2px solid #78ffd7;
 }
-.input_item > label {
+
+.input_item > label,
+p {
   color: #78ffd7;
   display: block;
   text-align: left;
@@ -146,6 +200,14 @@ export default {
 .input_item {
   padding-top: 1rem;
   padding-bottom: 2rem;
+}
+.phoneNumber_item {
+  padding-top: 1rem;
+}
+.phoneNumber_item > label {
+  color: #78ffd7;
+  display: block;
+  margin-bottom: 5px;
 }
 .birthday_item {
   padding-top: 1rem;
@@ -189,8 +251,22 @@ export default {
   padding-left: 10px;
   color: black;
 }
-.genderChoice {
-  padding-left: 5px;
+.phone_input {
+  width: 15rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 0 auto;
+}
+.phone_input > input {
+  flex: 1;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
   color: rgba(0, 0, 0, 0.5);
 }
 .birthday_input {

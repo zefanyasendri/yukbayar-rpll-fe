@@ -7,16 +7,22 @@
         </div>
         <ul v-show="!mobile" class="MyNavigation">
           <li>
-            <router-link class="link" :to="{ path: '/bo/pendapatan' }">Pendapatan</router-link>
+            <router-link class="link" :to="{ path: '/bo/pendapatan' }"
+              >Pendapatan</router-link
+            >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }">Transaksi Pelanggan</router-link>
+            <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }"
+              >Transaksi Pelanggan</router-link
+            >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/bo/listmitra' }">List Partner</router-link>
+            <router-link class="link" :to="{ path: '/bo/listmitra' }"
+              >List Partner</router-link
+            >
           </li>
-          <li>
-            <router-link class="link" :to="{ path: '/logout' }">Logout</router-link>
+          <li v-on:click="logout">
+            <router-link class="link" :to="{ path: '' }">Logout</router-link>
           </li>
         </ul>
         <div class="icon">
@@ -30,16 +36,22 @@
         <transition name="mobile-nav">
           <ul v-show="mobileNav" class="dropdown-nav">
             <li>
-                <router-link class="link" :to="{ path: '/bo/pendapatan' }">Pendapatan</router-link>
+              <router-link class="link" :to="{ path: '/bo/pendapatan' }"
+                >Pendapatan</router-link
+              >
             </li>
             <li>
-                <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }">Transaksi Pelanggan</router-link>
+              <router-link class="link" :to="{ path: '/bo/transaksipelanggan' }"
+                >Transaksi Pelanggan</router-link
+              >
             </li>
             <li>
-                <router-link class="link" :to="{ path: '/bo/listmitra' }">List Partner</router-link>
+              <router-link class="link" :to="{ path: '/bo/listmitra' }"
+                >List Partner</router-link
+              >
             </li>
-            <li>
-                <router-link class="link" :to="{ path: '/logout' }">Logout</router-link>
+            <li v-on:click="logout">
+              <router-link class="link" :to="{ path: '' }">Logout</router-link>
             </li>
           </ul>
         </transition>
@@ -49,6 +61,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import LoginService from "@/service/LoginService";
+
 export default {
   name: "BussinessOwnerNavigation",
   data() {
@@ -57,6 +72,8 @@ export default {
       mobile: null,
       mobileNav: null,
       windowWidth: null,
+      userType: "",
+      loginService: new LoginService(),
     };
   },
   created() {
@@ -65,6 +82,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.updateScroll);
+    this.fetchData();
   },
   methods: {
     toggleMobileNav() {
@@ -89,6 +107,13 @@ export default {
       this.mobile = false;
       this.mobileNav = false;
       return;
+    },
+    async fetchData() {
+      await axios.get("/logout");
+    },
+    async logout() {
+      this.loginService.removeUserType();
+      location.replace("/");
     },
   },
 };
