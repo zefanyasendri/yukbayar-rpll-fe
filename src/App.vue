@@ -1,27 +1,28 @@
 <template>
   <div id="app">
     <div v-if="userType == ''">
-      <HomeNavbar />
-    </div>
-    <div v-else-if="userType == 'customer'">
-      <CustNavbar />
-    </div>
-    <div v-else-if="userType == 'owner'">
+      <!-- <HomeNavbar /> -->
       <BONavbar />
     </div>
-    <div v-else-if="userType == 'staff'">
+    <!-- <div v-else-if="userType == 'customer'">
+      <CustNavbar />
+    </div> -->
+    <!-- <div v-else-if="userType == 'owner'">
+      <BONavbar />
+    </div> -->
+    <!-- <div v-else-if="userType == 'staff'">
       <StaffNavbar />
-    </div>
+    </div> -->
     <router-view />
     <FooterPage />
   </div>
 </template>
 
 <script>
-import HomeNavbar from "./components/Navigation/HomeNavbar";
+// import HomeNavbar from "./components/Navigation/HomeNavbar";
 import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
-import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
-import CustNavbar from "./components/Navigation/CustNavbar";
+// import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
+// import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
 import LoginService from "./service/LoginService";
 
@@ -40,11 +41,11 @@ export default {
     };
   },
   components: {
-    HomeNavbar,
-    CustNavbar,
+    // HomeNavbar,
+    // CustNavbar,
     FooterPage,
     BONavbar,
-    StaffNavbar,
+    // StaffNavbar,
   },
   methods: {
     async fetchData() {
