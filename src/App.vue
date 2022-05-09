@@ -23,7 +23,7 @@ import BONavbar from "./components/Navigation/BusinessOwnerNavbar.vue";
 import StaffNavbar from "./components/Navigation/StaffNavbar.vue";
 import CustNavbar from "./components/Navigation/CustNavbar";
 import FooterPage from "./components/FooterApp";
-import LoginService from "./service/LoginService";
+import LoginService from "./services/LoginService";
 
 export default {
   name: "App",

@@ -42,7 +42,7 @@
 </template>
 <script>
 // import axios from "axios";
-import LoginService from "@/service/LoginService.js";
+import LoginService from "@/services/LoginService.js";
 var state = false;
 
 export default {

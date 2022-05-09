@@ -1,30 +1,40 @@
 <template>
   <!-- <div class="home"> -->
   <!-- <router-link to="/order"> -->
-  <div class="image_div">
-    <router-link to="/Customer/Transaksi/PLN">
-      <img src="@/assets/Home/PLN.png" />
-    </router-link>
+  <div class="all container is-fluid">
+    <div class="columns mt-2 ml-6 mr-6 mb-2 is-family-sans-serif">
+      <div class="column is-one-third title is-36 is-size-5-mobile">Hello, Agus Hermanto</div>
+      <div class="column"></div>
+      <div class="column is-one-third title is-36 is-size-5-mobile ">Saldo : <span class="has-text-weight-bold">Rp 1.975.000</span></div>
+    </div>
 
-    <router-link to="/Customer/Transaksi/PDAM">
-      <img src="@/assets/Home/PDAM.png" />
-    </router-link>
+    <div class="image_div">
+      <router-link to="/Customer/Transaksi/PLN">
+        <img src="@/assets/Home/PLN.png" />
+      </router-link>
 
-    <router-link to="/Customer/Transaksi/Pajak">
-      <img src="@/assets/Home/Pajak.png" />
-    </router-link>
+      <router-link to="/Customer/Transaksi/PDAM">
+        <img src="@/assets/Home/PDAM.png" />
+      </router-link>
 
-    <router-link to="/Customer/Transaksi/Internet">
-      <img src="@/assets/Home/Internet.png" />
-    </router-link>
+      <router-link to="/Customer/Transaksi/Pajak">
+        <img src="@/assets/Home/Pajak.png" />
+      </router-link>
 
-    <router-link to="/Customer/Transaksi/Asuransi">
-      <img src="@/assets/Home/Asuransi.png" />
-    </router-link>
+      <router-link to="/Customer/Transaksi/Internet">
+        <img src="@/assets/Home/Internet.png" />
+      </router-link>
 
-    <router-link to="/Customer/Transaksi/BPJS">
-      <img src="@/assets/Home/BPJS.png" />
-    </router-link>
+      <router-link to="/Customer/Transaksi/Asuransi">
+        <img src="@/assets/Home/Asuransi.png" />
+      </router-link>
+
+      <router-link to="/Customer/Transaksi/BPJS">
+        <img src="@/assets/Home/BPJS.png" />
+      </router-link>
+
+    </div>
+
   </div>
   <!-- </router-link> -->
   <!-- </div> -->
@@ -60,5 +70,8 @@
 }
 img {
   width: 225px;
+}
+.title {
+  color: #18234a;
 }
 </style>
