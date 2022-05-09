@@ -68,9 +68,10 @@ export default {
     },
     submitForm() {
       let tipeUser;
-      tipeUser = "customer";
+      tipeUser = "staff";
+      alert("Login Berhasil!!");
       this.loginService.addToUserType(tipeUser);
-      location.replace("/home");
+      location.replace("/");
     },
   },
 };

@@ -1,149 +1,82 @@
 <template>
-    <div class="all">
-        <b-tabs>
-            <b-tab-item label="Table Transaksi Pelanggan">
-                <b-table :data="data">
-                    <template v-for="column in columns">
-                        <b-table-column :key="column.id" v-bind="column">
-                            <template
-                                v-if="column.searchable"
-                                #searchable="props">
-                                <p style="font-size:0.65rem;">Search By {{column.label}}</p>
-                                <b-input
-                                    v-model="props.filters[props.column.field]"
-                                    placeholder="Type Here .."
-                                    icon="magnify"
-                                    size="is-small" />
-                            </template>
-                            <template v-slot="props">
-                              <div v-if="column.numeric">
-                                Rp. {{transactionServices.formatPrice(props.row[column.field]) }}
-                              </div>
-                              <div v-else-if="!column.numeric">
-                                {{props.row[column.field]}}
-                              </div>
-                            </template>
-                        </b-table-column>
-                    </template>
-                </b-table>
-            </b-tab-item>
-        </b-tabs>
-    </div>
+  <div class="all">
+    <b-tabs>
+      <b-tab-item label="Table Transaksi Pelanggan">
+        <b-table :data="data">
+          <template v-for="column in columns">
+            <b-table-column :key="column.id" v-bind="column">
+              <template v-if="column.searchable" #searchable="props">
+                <p style="font-size: 0.65rem">Search By {{ column.label }}</p>
+                <b-input
+                  v-model="props.filters[props.column.field]"
+                  placeholder="Type Here .."
+                  icon="magnify"
+                  size="is-small"
+                />
+              </template>
+              <template v-slot="props">
+                <div v-if="column.numeric">
+                  Rp.
+                  {{ transactionServices.formatPrice(props.row[column.field]) }}
+                </div>
+                <div v-else-if="!column.numeric">
+                  {{ props.row[column.field] }}
+                </div>
+              </template>
+            </b-table-column>
+          </template>
+        </b-table>
+      </b-tab-item>
+    </b-tabs>
+  </div>
 </template>
 
 <script>
-import TransactionServices from '@/services/TransactionServices';
+import TransactionServices from "@/services/TransactionServices";
+import axios from "axios";
+
 export default {
   name: "DataAkun",
+  mounted() {
+    this.fetchData();
+  },
   data() {
     return {
       transactionServices: new TransactionServices(),
-      data : [
-      {
-        uuid: "31bc7282-c799-11ec-9d64-0242ac120002",
-        name: "Jesse",
-        jenistransaksi: "TopUp",
-        jumlahbayar: 50000,
-        date: "2016-10-15 3:43:27",
-        status: "TopUp",
-      },
-      {
-        uuid: "31bc7552-c799-11ec-9d64-0242ac120002",
-        name: "John",
-        jenistransaksi: "PLN",
-        jumlahbayar:102000,
-        date: "2020-9-13 7:33:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc76a6-c799-11ec-9d64-0242ac120002",
-        name: "Tina",
-        jenistransaksi: "PDAM",
-        jumlahbayar: 300000,
-        date: "2021-8-11 8:44:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc78a4-c799-11ec-9d64-0242ac120002",
-        name: "Clarence",
-        jenistransaksi: "PLN",
-        jumlahbayar: 250000,
-        date: "2022-7-9 9:56:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc7c50-c799-11ec-9d64-0242ac120002",
-        name: "Anne",
-        jenistransaksi: "Internet",
-        jumlahbayar: 360000,
-        date: "2017-6-7 1:12:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc7282-c799-11ec-9d64-0242ac120002",
-        name: "Jesse",
-        jenistransaksi: "TopUp",
-        jumlahbayar: 50000,
-        date: "2016-10-15 3:43:27",
-        status: "TopUp",
-      },
-      {
-        uuid: "31bc7552-c799-11ec-9d64-0242ac120002",
-        name: "John",
-        jenistransaksi: "PLN",
-        jumlahbayar: 102000,
-        date: "2020-9-13 7:33:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc76a6-c799-11ec-9d64-0242ac120002",
-        name: "Tina",
-        jenistransaksi: "PDAM",
-        jumlahbayar: 300000,
-        date: "2021-8-11 8:44:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc78a4-c799-11ec-9d64-0242ac120002",
-        name: "Clarence",
-        jenistransaksi: "PLN",
-        jumlahbayar: 250000,
-        date: "2022-7-9 9:56:27",
-        status: "Pembayaran",
-      },
-      {
-        uuid: "31bc7c50-c799-11ec-9d64-0242ac120002",
-        name: "Anne",
-        jenistransaksi: "Internet",
-        jumlahbayar: 360000,
-        date: "2017-6-7 1:12:27",
-        status: "Pembayaran",
-      },
-    ],
+      data: [
+        {
+          id_transaksi: null,
+          nama: null,
+          varian: null,
+          totalHarga: null,
+          tanggal: null,
+          status: null,
+        },
+      ],
       columns: [
         {
-          field: "uuid",
-          label: "UUID",
+          field: "id_transaksi",
+          label: "Id Transaksi",
           searchable: true,
         },
         {
-          field: "name",
+          field: "nama",
           label: "Name",
           searchable: true,
         },
         {
-          field: "jenistransaksi",
+          field: "varian",
           label: "Jenis Transaksi",
           searchable: true,
         },
         {
-          field: "jumlahbayar",
+          field: "totalHarga",
           label: "Jumlah Pembayaran",
-          numeric:true,
+          numeric: true,
           searchable: true,
         },
         {
-          field: "date",
+          field: "tanggal",
           label: "Tanggal Transaksi",
           searchable: true,
         },
@@ -154,6 +87,35 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    async fetchData() {
+      // const res = await axios.get("/transaksi");
+      // this.data.push({ name: res.data.data.name[0] });
+      axios
+        .get("/transaksi")
+        .then((response) => (this.data = response.data.data))
+        .catch((error) => {
+          console.log(error);
+        });
+      // axios
+      //   .post("/transaksi", {
+      //     nama: this.person.firstName + " " + this.person.lastName,
+      //     noTelpon: this.person.noHp,
+      //     email: this.person.email,
+      //     password: this.person.password,
+      //     tglLahir: this.person.birthday,
+      //     gender: this.person.gender,
+      //     tipepengguna: this.person.tipePengguna,
+      //   })
+      //   .then((response) => {
+      //     console.log(response.data);
+      //     alert("Register Berhasil!!");
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    },
   },
 };
 </script>
