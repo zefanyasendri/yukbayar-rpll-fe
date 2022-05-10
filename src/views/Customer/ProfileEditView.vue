@@ -128,7 +128,7 @@
     },
     methods: {
       async fetchData() {
-        const res = await axios.get("/users/1");
+        const res = await axios.get("/users/5f4a2a6c-0849-4e6c-b4c7-575be444");
         this.dataProfile = res.data.data;
       },
       toggleLama(){
