@@ -20,12 +20,6 @@
             </p>
             <p class="subtitle is-5 mr-6">2022-05-09 22:13:04</p>
           </div>
-
-          <!-- <div class="column auto has-text-right">
-            <p class="price is-size-3 has-text-weight-bold mr-6">
-              -Rp {{ i.jumlahBayar }}
-            </p>
-          </div> -->
         </div>
       </div>
     </div>

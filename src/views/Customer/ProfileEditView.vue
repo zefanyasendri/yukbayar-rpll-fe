@@ -39,26 +39,6 @@
         <input class="input subtitle is-4" type="email" :value="dataProfile.email" disabled>
       </div>
     </div>
-    
-    <div class="field columns is-family-sans-serif">
-      <div class="column is-3 has-text-left mt-3">
-        <label class="label subtitle is-4">Password Lama</label>
-      </div>
-      <div class="column is-1 mt-3"> : </div>
-      <div class="control column is-8">
-        <input class="input subtitle is-4" type="password" :value="profileServices.hidePassword(dataProfile.password)">
-      </div>
-    </div>
-
-    <div class="field columns is-family-sans-serif">
-      <div class="column is-3 has-text-left mt-3">
-        <label class="label subtitle is-4">Password Baru</label>
-      </div>
-      <div class="column is-1 mt-3"> : </div>
-      <div class="control column is-8">
-        <input class="input subtitle is-4" type="password" :value="profileServices.hidePassword(dataProfile.password)">
-      </div>
-    </div>
 
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
@@ -90,6 +70,36 @@
       </div>
     </div>
 
+    <div class="field columns is-family-sans-serif">
+      <div class="column is-3 has-text-left mt-3">
+        <label class="label subtitle is-4">Password Lama</label>
+      </div>
+      <div class="column is-1 mt-3"> : </div>
+      <div class=" column ">
+        <div class="control has-icons-right">
+          <input class="input subtitle is-4" id="password-lama" type="password" :value="profileServices.hidePassword(dataProfile.password)">
+          <span class="icon is-right mb-4 pl-3 mt-3 mr-3 is-clickable" v-on:click="toggleLama()">
+            <i class="fa fa-eye" aria-hidden="true" id="eye" ></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field columns is-family-sans-serif">
+      <div class="column is-3 has-text-left mt-3">
+        <label class="label subtitle is-4">Password Baru</label>
+      </div>
+      <div class="column is-1 mt-3"> : </div>
+      <div class="column">
+        <div class="control has-icons-right">
+          <input class="input subtitle is-4" id="password-baru" type="password" :value="profileServices.hidePassword(dataProfile.password)">
+          <span class="icon is-right mb-4 pl-3 mt-3 mr-3 is-clickable" v-on:click="toggleBaru()">
+            <i class="fa fa-eye" aria-hidden="true" id="eye" ></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div class="field">
       <p class="control">
         <router-link to="/Profile">
@@ -102,7 +112,9 @@
 
 <script>
   import axios from "axios";
-  import ProfileServices from "@/services/ProfileServices"
+  import ProfileServices from "@/services/ProfileServices";
+  var state = false;
+
 
   export default {
     mounted() {
@@ -119,6 +131,24 @@
         const res = await axios.get("/users/1");
         this.dataProfile = res.data.data;
       },
+      toggleLama(){
+        if(state) {
+          document.getElementById("password-lama").setAttribute("type", "password");
+          state = false;
+        } else {
+          document.getElementById("password-lama").setAttribute("type", "text");
+          state = true;
+        }
+      },
+      toggleBaru(){
+        if(state) {
+          document.getElementById("password-baru").setAttribute("type", "password");
+          state = false;
+        } else {
+          document.getElementById("password-baru").setAttribute("type", "text");
+          state = true;
+        }
+      }
     },
   };
 </script>
@@ -138,5 +168,25 @@
   .button:hover {
     color: white;
     background-color: #192676;
+  }
+
+  .icon .is-action {
+      cursor: pointer;
+      pointer-events: initial !important;
+  }
+
+  .icon:hover {
+      color: #2f3e50;
+  }
+
+  .password-input {
+     /* width: 15rem;
+    height: 1rem;
+    background-color: white;
+    border-radius: 30px; */
+    /* display: flex;
+    align-items: center; */
+    /* margin: 0 auto; */
+    /* padding: 20px; */
   }
 </style>
