@@ -15,11 +15,14 @@
                                 />
                             </template>
                             <template v-slot="props">
-                              <div v-if="column.numeric">
+                              <div v-if="column.pembayaran">
                                 Rp. 
                                 {{ transactionServices.formatPrice(props.row[column.field]) }}
                               </div>
-                              <div v-else-if="!column.numeric">
+                              <div v-else-if="column.date">
+                                {{ transactionServices.changeDateFormat(props.row[column.field]) }}
+                              </div>
+                              <div v-else-if="!column.pembayaran">
                                 {{props.row[column.field]}}
                               </div>
                             </template>
@@ -72,12 +75,13 @@
                 {
                 field: "totalHarga",
                 label: "Jumlah Pembayaran",
-                numeric: true,
+                pembayaran: true,
                 searchable: true,
                 },
                 {
                 field: "tanggal",
                 label: "Tanggal Transaksi",
+                date:true,
                 searchable: true,
                 },
                 {

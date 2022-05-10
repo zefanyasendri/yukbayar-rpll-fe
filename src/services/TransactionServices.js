@@ -3,4 +3,10 @@ export default class TransactionServices {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
+    changeDateFormat(str){
+        var temp = str.toString()
+        var val1 = temp.substr(0,10)
+        var val2 = temp.substr(11,8)
+        return val1 + '\n' + val2
+    }
 }

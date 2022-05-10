@@ -50,8 +50,8 @@ import PBBKonfirmasi from '@/views/Customer/Transaksi/Pembayaran/PBB/KonfirmasiP
 import PBBBerhasil from '@/views/Customer/Transaksi/Pembayaran/PBB/BerhasilPBB.vue'
 
 //Staff
-import DataAkunView from '@/views/Staff/DataAkunView.vue'
-import DaftarMitraView from '@/views/Staff/DaftarMitraView.vue'
+import DaftarPelangganView from '@/views/Staff/DaftarPelangganView.vue'
+import PendaftaranMitraView from '@/views/Staff/PendaftaranMitraView.vue'
 import TransaksiPelangganView from '@/views/Staff/TransaksiPelangganView.vue'
 
 //BusinessOwner
@@ -186,13 +186,13 @@ const routes = [{
         name:'profileupdate',
         component:ProfileEditView
     },{
-        path:'/staff/dataakun',
-        name:'dataakun',
-        component:DataAkunView
+        path:'/staff/daftarpelanggan',
+        name:'daftarpelanggan',
+        component:DaftarPelangganView
     },{
-        path:'/staff/daftarmitra',
-        name:'daftarmitra',
-        component:DaftarMitraView
+        path:'/staff/pendaftaranmitra',
+        name:'pendaftaranmitra',
+        component:PendaftaranMitraView
     },{
         path:'/staff/transaksipelanggan',
         name:'transaksipelanggan',
