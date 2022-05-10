@@ -14,12 +14,12 @@
             >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/staff/daftarmitra' }"
+            <router-link class="link" :to="{ path: '/staff/pendaftaranmitra' }"
               >Daftar Mitra</router-link
             >
           </li>
           <li>
-            <router-link class="link" :to="{ path: '/staff/dataakun' }"
+            <router-link class="link" :to="{ path: '/staff/daftarpelanggan' }"
               >Data Akun</router-link
             >
           </li>
@@ -45,12 +45,12 @@
               >
             </li>
             <li>
-              <router-link class="link" :to="{ path: '/staff/daftarmitra' }"
+              <router-link class="link" :to="{ path: '/staff/pendaftaranmitra' }"
                 >Daftar Mitra</router-link
               >
             </li>
             <li>
-              <router-link class="link" :to="{ path: '/staff/dataakun' }"
+              <router-link class="link" :to="{ path: '/staff/daftarpelanggan' }"
                 >Data Akun</router-link
               >
             </li>

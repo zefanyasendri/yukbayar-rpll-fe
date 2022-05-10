@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <div class="box">
-      <span class="title">Daftar Mitra</span>
+      <span class="title">Register Mitra</span>
       <br />
       <div class="input_item">
         <label>Identitas Pemilik Usaha</label>
