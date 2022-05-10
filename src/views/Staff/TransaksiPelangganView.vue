@@ -90,31 +90,12 @@ export default {
   },
   methods: {
     async fetchData() {
-      // const res = await axios.get("/transaksi");
-      // this.data.push({ name: res.data.data.name[0] });
       axios
         .get("/transaksi")
         .then((response) => (this.data = response.data.data))
         .catch((error) => {
           console.log(error);
         });
-      // axios
-      //   .post("/transaksi", {
-      //     nama: this.person.firstName + " " + this.person.lastName,
-      //     noTelpon: this.person.noHp,
-      //     email: this.person.email,
-      //     password: this.person.password,
-      //     tglLahir: this.person.birthday,
-      //     gender: this.person.gender,
-      //     tipepengguna: this.person.tipePengguna,
-      //   })
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     alert("Register Berhasil!!");
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
     },
   },
 };
