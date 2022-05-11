@@ -9,4 +9,11 @@ export default class TransactionServices {
         var val2 = temp.substr(11,8)
         return val1 + '\n' + val2
     }
+    countPendapatan(arrayData){
+        var total = 0
+        for (let i = 0; i < arrayData.length; i++) {
+            total += 2000;
+        }
+        return total
+    }
 }
