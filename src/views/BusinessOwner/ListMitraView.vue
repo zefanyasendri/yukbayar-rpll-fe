@@ -19,7 +19,7 @@
                     :aria-expanded="props.open"
                 >
                     <p class="card-header-title">
-                        {{ collapse.title }}
+                        {{ collapse.namaPerusahaan }}
                     </p>
                     <a class="card-header-icon">
                         <b-icon
@@ -51,13 +51,13 @@
                     </div>
 
                     <div class="container_3" style="margin-left: 1rem;">
-                        <h1 class="con_kanan">{{collapse.data.NamaPemilikPerusahaan }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.NomorTeleponPemilik }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.EmailPemilik }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.NamaPerusahaan }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.BidangUsaha }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.JenisUsaha }}</h1>
-                        <h1 class="con_kanan">{{collapse.data.AlamatPerusahaan }}</h1>
+                        <h1 class="con_kanan">{{collapse.pemilikBisnis}}</h1>
+                        <h1 class="con_kanan">{{collapse.noTelpon }}</h1>
+                        <h1 class="con_kanan">{{collapse.email }}</h1>
+                        <h1 class="con_kanan">{{collapse.namaPerusahaan }}</h1>
+                        <h1 class="con_kanan">{{collapse.bidangUsaha }}</h1>
+                        <h1 class="con_kanan">{{collapse.badanUsaha }}</h1>
+                        <h1 class="con_kanan">{{collapse.alamat }}</h1>
                     </div>
                 </div>
             </div>
@@ -68,50 +68,38 @@
 </template>
 
 <script>
+import axios from "axios";
     export default {
+        name : "ListMitra",
+        mounted() {
+            this.fetchData();
+        },
         data() {
             return {
                 isOpen: 0,
                 collapses: [
                 {
-                    title: 'PLN',
-                    data: {
-                        NamaPemilikPerusahaan:"SUDHAR",
-                        NomorTeleponPemilik:"081234567890",
-                        EmailPemilik:"sudhartoh@gmail.com",
-                        NamaPerusahaan:"PLN Batam",
-                        BidangUsaha:"PLN",
-                        JenisUsaha:"PLN",
-                        AlamatPerusahaan:"Jl. PLN"
-                    }
-                },
-                {
-                    title: 'MyRepublic',
-                    data: {
-                        NamaPemilikPerusahaan:"MADI",
-                        NomorTeleponPemilik:"081234567890",
-                        EmailPemilik:"sudhartohmadi@gmail.com",
-                        NamaPerusahaan:"MyRepublic Batam",
-                        BidangUsaha:"Internet",
-                        JenisUsaha:"Internet",
-                        AlamatPerusahaan:"Jl. Internet"
-                    }
-                },
-                {
-                    title: 'Indihome',
-                    data: {
-                        NamaPemilikPerusahaan:"SUDHAR",
-                        NomorTeleponPemilik:"081234567890",
-                        EmailPemilik:"sudhartoh@gmail.com",
-                        NamaPerusahaan:"Internet Batam",
-                        BidangUsaha:"Internet",
-                        JenisUsaha:"Internet",
-                        AlamatPerusahaan:"Jl. Internet"
-                    }
+                    pemilikBisnis:null,
+                    noTelpon:null,
+                    email:null,
+                    alamat:null,
+                    bidangUsaha:null,
+                    badanUsaha:null,
+                    namaPerusahaan:null
                 },
                 ]
             }
-        }
+        },
+        methods: {
+            async fetchData() {
+                axios
+                .get("/mitra")
+                .then((response) => (this.collapses = response.data.data))
+                .catch((error) => {
+                console.log(error);
+                });
+            },
+        },
     }
 </script>
 
