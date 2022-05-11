@@ -159,8 +159,12 @@ export default {
           tipepengguna: this.person.tipePengguna,
         })
         .then((response) => {
+          const inputs = document.querySelectorAll('#fname, #lname, #verify, #password, #male, #female, #other, #phoneNumber, #birthday');
           console.log(response.data);
-          alert("Register Berhasil!!");
+          alert("Register Berhasil! Silahkan Login");
+          inputs.forEach(input => {
+            input.value = '';
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -171,12 +175,6 @@ export default {
 </script>
 
 <style scoped>
-.register {
-  /* background-image: url("../assets/Home/Asuransi.png");
-  background-repeat: no-repeat;
-  overflow: hidden;
-  background-size: cover; */
-}
 .box {
   width: 600px;
   height: 550px;
