@@ -10,6 +10,7 @@
             type="text"
             v-model="mitra.nama_owner"
             placeholder="Nama Lengkap"
+            id="namaowner"
           />
         </div>
         <div class="input_pendek">
@@ -17,6 +18,7 @@
             type="text"
             v-model="mitra.notelp"
             placeholder="Nomor Telepon"
+            id="notelp"
           />
         </div>
       </div>
@@ -26,6 +28,7 @@
             type="text"
             v-model="mitra.email"
             placeholder="Alamat Email"
+            id="email"
           />
         </div>
       </div>
@@ -35,6 +38,7 @@
             type="text"
             v-model="mitra.nama_perusahaan"
             placeholder="Nama Perusahaan"
+            id="namaperusahaan"
           />
         </div>
       </div>
@@ -44,14 +48,16 @@
           <input
             type="text"
             v-model="mitra.bidang_usaha"
-            placeholder="Bidang Usaha"
+            placeholder="Jenis Bidang Usaha"
+            id="bidang"
           />
         </div>
         <div class="input_pendek">
           <input
             type="text"
-            v-model="mitra.jenis_usaha"
-            placeholder="Jenis Usaha"
+            v-model="mitra.badan_usaha"
+            placeholder="Jenis Badan Usaha"
+            id="badan"
           />
         </div>
       </div>
@@ -61,14 +67,16 @@
             type="text"
             v-model="mitra.alamat_perusahaan"
             placeholder="Alamat Perusahaan (Sertakan Kota dan Kode Pos)"
+            id="alamat"
           />
         </div>
       </div>
-    <button class="btn_style">Daftar</button>
+    <button class="btn_style" v-on:click="submitForm">Daftar</button>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
 
 export default {
   name: "DaftarMitra",
@@ -77,13 +85,39 @@ export default {
       mitra: {
         nama_owner: "",
         notelp: "",
+        email: "",
         nama_perusahaan: "",
         bidang_usaha: "",
-        jenis_usaha: "",
+        badan_usaha: "",
         alamat_perusahaan: "",
       },
     };
-  }
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("/mitras/mitra", {
+          pemilikBisnis: this.mitra.nama_owner,
+          noTelpon: this.mitra.notelp,
+          email: this.mitra.email,
+          namaPerusahaan: this.mitra.nama_perusahaan,
+          bidangUsaha: this.mitra.bidang_usaha,
+          badanUsaha: this.mitra.badan_usaha,
+          alamat: this.mitra.alamat_perusahaan,
+        })
+        .then((response) => {
+          const inputs = document.querySelectorAll('#namaowner, #notelp, #email, #namaperusahaan, #bidang, #badan, #alamat');
+          console.log(response.data);
+          alert("Pendaftaran Mitra Berhasil!!");
+          inputs.forEach(input => {
+            input.value = '';
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 
