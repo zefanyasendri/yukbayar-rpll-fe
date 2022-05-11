@@ -1,57 +1,70 @@
 <template>
     <div class="all">
-        <b-field grouped group-multiline>
-            <b-button
-                label="Clear checked"
-                type="is-danger"
-                icon-left="close"
-                class="field"
-                @click="checkedRows = []" />
-        </b-field>
         <b-tabs>
-            <b-tab-item label="Table">
-                <b-table 
-                    :data="data" 
-                    :columns="columns" 
-                    :checked-rows.sync="checkedRows"
-                    checkable
-                    :checkbox-position="checkboxPosition"
-                    :checkbox-type="checkboxType">
-                </b-table>
-            </b-tab-item>
-                    
-            <b-tab-item label="Checked rows">
-                <pre>{{ checkedRows }}</pre>
-            </b-tab-item>
-        </b-tabs>
+      <b-tab-item label="Table Data Pelanggan">
+        <b-table :data="data">
+          <template v-for="column in columns">
+            <b-table-column :key="column.id" v-bind="column">
+              <template v-if="column.searchable" #searchable="props">
+                <p style="font-size: 0.65rem">Search By {{ column.label }}</p>
+                <b-input
+                  v-model="props.filters[props.column.field]"
+                  placeholder="Type Here .."
+                  icon="magnify"
+                  size="is-small"
+                />
+              </template>
+              <template v-slot="props">
+                <div v-if="column.saldo">
+                  Rp.
+                  {{ transactionServices.formatPrice(props.row[column.field]) }}
+                </div>
+                <div v-else-if="!column.saldo">
+                  {{ props.row[column.field] }}
+                </div>
+              </template>
+            </b-table-column>
+          </template>
+        </b-table>
+      </b-tab-item>
+    </b-tabs>
     </div>
 </template>
 
 <script>
+    import axios from "axios";
+    import TransactionServices from '@/services/TransactionServices';
+
     export default {
-        name:"DataAkun",
+        name:"DaftarPelanggan",
+        mounted() {
+            this.fetchData();
+        },
         data() {
-            const data = [
-                    { 'uuid': "31bc7282-c799-11ec-9d64-0242ac120002", 'name': 'Jesse', 'email': 'Jesse@gmail.com', 'notelp': '081234567890', 'tgllahir': '17 - 8 - 2001', 'gender': 'Laki - Laki' },
-                    { 'uuid': "31bc7552-c799-11ec-9d64-0242ac120002", 'name': 'John', 'email': 'John@gmail.com', 'notelp': '083456789012', 'tgllahir': '7 - 9 - 2001', 'gender': 'Laki - Laki' },
-                    { 'uuid': "31bc76a6-c799-11ec-9d64-0242ac120002", 'name': 'Tina', 'email': 'Tina@gmail.com', 'notelp': '087891234560', 'tgllahir': '17 - 10 - 2001', 'gender': 'Perempuan' },
-                    { 'uuid': "31bc78a4-c799-11ec-9d64-0242ac120002", 'name': 'Clarence', 'email': 'Clarence@gmail.com', 'notelp': '081236789450', 'tgllahir': '7 - 11 - 2001', 'gender': 'Laki - Laki' },
-                    { 'uuid': "31bc7c50-c799-11ec-9d64-0242ac120002", 'name': 'Anne', 'email': 'Anne@gmail.com', 'notelp': '081290345678', 'tgllahir': '17 - 12 - 2001', 'gender': 'Laki - Laki' }
-                ]
             return {
-                data,
+                transactionServices : new TransactionServices(),
+                data: [
+                    {
+                        id: null,
+                        email: null,
+                        nama: null,
+                        noTelpon: null,
+                        gender: null,
+                        saldoYukPay : null,
+                    },
+                ],
                 checkboxPosition: 'left',
                 checkboxType: 'is-primary',
                 checkedRows: [],
                 columns: [
                     {
-                        field: 'uuid',
-                        label: 'UUID',
+                        field: 'id',
+                        label: 'ID',
                         searchable:true,
                     },
                     {
-                        field: 'name',
-                        label: 'Name',
+                        field: 'nama',
+                        label: 'Nama',
                         searchable:true,
                     },
                     {
@@ -60,13 +73,14 @@
                         searchable:true,
                     },
                     {
-                        field: 'notelp',
+                        field: 'noTelpon',
                         label: 'No - Telp',
                         searchable:true,
                     },
                     {
-                        field: 'tgllahir',
-                        label: 'Tanggal Lahir',
+                        field: 'saldoYukPay',
+                        label: 'Saldo YukPay',
+                        saldo:true,
                         searchable:true,
                     },
                     {
@@ -74,10 +88,21 @@
                         label: 'Gender',
                         searchable:true,
                     }
-                ]
-            }
-        }
-    }
+                ],
+               
+            };
+        },
+        methods: {
+            async fetchData() {
+                axios
+                .get("/users/")
+                .then((response) => (this.data = response.data.data))
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+        },
+    };
 </script>
 <style scoped>
 @media screen and (max-width: 667px) {
