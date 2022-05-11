@@ -11,13 +11,24 @@
       </div>
     </div>
 
-    
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
         <label class="label subtitle is-4">Name</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
         {{ dataProfile.nama }}
       </div>
     </div>
@@ -27,7 +38,19 @@
         <label class="label subtitle is-4">Email</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
         {{ dataProfile.email }}
       </div>
     </div>
@@ -37,8 +60,20 @@
         <label class="label subtitle is-4">Saldo YukPay</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
-        {{profileServices.hidePassword(dataProfile.password) }}
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
+        {{ dataProfile.saldoYukPay }}
       </div>
     </div>
 
@@ -47,17 +82,41 @@
         <label class="label subtitle is-4">No. Telp</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
         {{ dataProfile.noTelpon }}
       </div>
     </div>
 
     <div class="field columns is-family-sans-serif">
       <div class="column is-3 has-text-left mt-3">
-        <label class="label subtitle is-4 ">Tgl. Lahir</label>
+        <label class="label subtitle is-4">Tgl. Lahir</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
         {{ dataProfile.tglLahir }}
       </div>
     </div>
@@ -67,7 +126,19 @@
         <label class="label subtitle is-4">Gender</label>
       </div>
       <div class="column is-1 mt-3">:</div>
-      <div class="control column is-8 input mt-3 pt-3 subtitle is-4 has-text-left-desktop">
+      <div
+        class="
+          control
+          column
+          is-8
+          input
+          mt-3
+          pt-3
+          subtitle
+          is-4
+          has-text-left-desktop
+        "
+      >
         {{ dataProfile.gender }}
       </div>
     </div>
@@ -85,46 +156,51 @@
 </template>
 
 <script>
-  import ProfileServices from "@/services/ProfileServices"
-  import axios from "axios";
+import ProfileServices from "@/services/ProfileServices";
+import axios from "axios";
+import LoginService from "@/services/LoginService.js";
 
-  export default {
-    mounted() {
-      this.fetchData();
+export default {
+  mounted() {
+    this.fetchData();
+  },
+  data() {
+    return {
+      id: "",
+      dataProfile: [],
+      profileServices: new ProfileServices(),
+      loginService: new LoginService(),
+    };
+  },
+  methods: {
+    async fetchData() {
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.id = this.data[0].id;
+      const res = await axios.get("/users/" + this.id);
+      this.dataProfile = res.data.data;
     },
-    data() {
-      return {
-        dataProfile: [],
-        profileServices: new ProfileServices(),
-      };
-    },
-    methods: {
-      async fetchData() {
-        const res = await axios.get("/users/5f4a2a6c-0849-4e6c-b4c7-575be444");
-        this.dataProfile = res.data.data;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style scoped>
-  .container {
-    padding-top: 1rem;
-  }
-  .input {
-    cursor: default;
-    pointer-events:none
-  }
-  .button {
-    background-color: #223196;
-    color: white;
-    padding: 1rem 5rem;
-  }
-  .button:hover {
-    color: white;
-    background-color: #192676;
-  }
-  .input {
-    background-color: rgb(250, 250, 250);
-  }
+.container {
+  padding-top: 1rem;
+}
+.input {
+  cursor: default;
+  pointer-events: none;
+}
+.button {
+  background-color: #223196;
+  color: white;
+  padding: 1rem 5rem;
+}
+.button:hover {
+  color: white;
+  background-color: #192676;
+}
+.input {
+  background-color: rgb(250, 250, 250);
+}
 </style>

@@ -1,20 +1,23 @@
-export default class LoginService {
+export default class LoginDataService {
   constructor() {
     this.KEY = "LOGIN";
   }
 
-  getCurrentUserType() {
-    return JSON.parse(localStorage.getItem(this.KEY)) || "";
+  getCurrentUserLoginData() {
+    return JSON.parse(localStorage.getItem(this.KEY)) || [];
   }
 
-  addToUserType(userType) {
-    const currentUserType = JSON.parse(localStorage.getItem(this.KEY)) || [];
+  addToCart(item) {
+    const currentCart = JSON.parse(localStorage.getItem(this.KEY)) || [];
+    for (let i = 0; i < currentCart.length; i++) {
+      if (currentCart[i].id === item.id) return;
+    }
 
-    currentUserType.push(userType);
-    localStorage.setItem(this.KEY, JSON.stringify(currentUserType[0]));
+    currentCart.push(item);
+    localStorage.setItem(this.KEY, JSON.stringify(currentCart));
   }
 
-  removeUserType() {
-    localStorage.removeItem(this.KEY)
+  removeFromCart() {
+      localStorage.removeItem(this.KEY)
   }
 }
