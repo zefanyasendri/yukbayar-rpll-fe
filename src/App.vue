@@ -31,12 +31,11 @@ export default {
     this.fetchData();
   },
   data: () => {
-    const data = [];
     return {
       userType: "",
       loginService: new LoginService(),
 
-      data,
+      data: [],
     };
   },
   components: {
@@ -48,7 +47,8 @@ export default {
   },
   methods: {
     async fetchData() {
-      this.userType = this.loginService.getCurrentUserType();
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.userType = this.data[0].tipePengguna;
     },
     async getUserType() {
       return this.userType;

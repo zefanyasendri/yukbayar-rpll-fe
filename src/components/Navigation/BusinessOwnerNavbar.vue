@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import LoginService from "@/services/LoginService";
 
 export default {
@@ -108,12 +108,13 @@ export default {
       this.mobileNav = false;
       return;
     },
-    async fetchData() {
-      await axios.get("/logout");
-    },
+    // async fetchData() {
+    //   await axios.get("/logout");
+    // },
     async logout() {
-      this.loginService.removeUserType();
+      this.loginService.removeFromCart();
       location.replace("/");
+      alert("Logout Berhasil!!");
     },
   },
 };

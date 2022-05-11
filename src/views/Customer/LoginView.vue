@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-// import axios from "axios";
+import axios from "axios";
 import LoginService from "@/services/LoginService.js";
 var state = false;
 
@@ -67,11 +67,19 @@ export default {
       }
     },
     submitForm() {
-      let tipeUser;
-      tipeUser = "staff";
-      alert("Login Berhasil!!");
-      this.loginService.addToUserType(tipeUser);
-      location.replace("/");
+      let userLoginData = [];
+      axios
+        .post("/login", this.person)
+        .then((response) => {
+          userLoginData = response.data.data;
+          this.loginService.addToCart(userLoginData);
+          alert("Login Berhasil!!");
+          location.replace("/");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error);
+        });
     },
   },
 };

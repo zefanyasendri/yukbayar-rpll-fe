@@ -1,9 +1,13 @@
 <template>
   <div class="all container is-fluid">
     <div class="columns mt-2 ml-6 mr-6 mb-2 is-family-sans-serif">
-      <div class="column is-one-third title is-36 is-size-5-mobile">Hello, Agus Hermanto</div>
+      <div class="column is-one-third title is-36 is-size-5-mobile">
+        {{ nama }}
+      </div>
       <div class="column"></div>
-      <div class="column is-one-third title is-36 is-size-5-mobile ">Saldo : <span class="has-text-weight-bold">Rp 1.975.000</span></div>
+      <div class="column is-one-third title is-36 is-size-5-mobile">
+        Saldo : <span class="has-text-weight-bold">{{ saldoYukPay }}</span>
+      </div>
     </div>
 
     <div class="image_div">
@@ -30,11 +34,33 @@
       <router-link to="/Customer/Transaksi/BPJS">
         <img src="@/assets/Home/BPJS.png" />
       </router-link>
-
     </div>
-
   </div>
 </template>
+
+<script>
+import LoginService from "@/services/LoginService.js";
+
+export default {
+  mounted() {
+    this.fetchData();
+  },
+  data() {
+    return {
+      nama: null,
+      saldoYukPay: null,
+      loginService: new LoginService(),
+    };
+  },
+  methods: {
+    async fetchData() {
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.nama = this.data[0].nama;
+      this.saldoYukPay = this.data[0].saldoYukPay;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .column {

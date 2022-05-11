@@ -159,12 +159,15 @@ export default {
           tipepengguna: this.person.tipePengguna,
         })
         .then((response) => {
-          const inputs = document.querySelectorAll('#fname, #lname, #verify, #password, #male, #female, #other, #phoneNumber, #birthday');
+          const inputs = document.querySelectorAll(
+            "#fname, #lname, #verify, #password, #male, #female, #other, #phoneNumber, #birthday"
+          );
           console.log(response.data);
           alert("Register Berhasil! Silahkan Login");
-          inputs.forEach(input => {
-            input.value = '';
+          inputs.forEach((input) => {
+            input.value = "";
           });
+          location.replace("/login");
         })
         .catch((error) => {
           console.log(error);
