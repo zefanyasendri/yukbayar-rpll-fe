@@ -22,7 +22,7 @@
         <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 1.000.000 </div>
     </div>
   <br>
-      <a href="/topup/pembayaran">
+      <a href="/topup/generate-token">
         <span style="margin-top:2rem;">
           <button type="button" id="buttontopup">Top Up Sekarang!</button>
         </span>
