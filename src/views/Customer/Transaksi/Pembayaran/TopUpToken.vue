@@ -1,10 +1,10 @@
 <template>
     <div class="all">
-        <div class="pembayaran_berhasil">
-          <p>Top Token </p>
+        <div class="pembayaran_berhasil title is-3">
+          <p>Top Up Token </p>
         </div>
         <h1 style="font-weight:bold;">Berikut Kode Virtual Account Anda</h1>
-        <h1 id='jumlah_pembayaran'>{{dataToken.kodeyukpay}}</h1>
+        <h1 id='jumlah_pembayaran'>{{token}}</h1>
         <div class="big_container" style=''>
           <div class="container_1">
               <h1 class="">Nama User</h1>
@@ -17,38 +17,71 @@
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">{{data.nama_user}}</h1>
-              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(data.saldoPembelian)}}</h1>
+              <h1 class="con_kanan">{{nama}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(jumlahTopUp)}}</h1>
           </div>
         </div> 
         <div class="tutup">
-            <router-link to="/">
-              <span style="margin-top:2rem;"><button type="button" id="buttontutup" v-on:click="submitForm">Selesai</button></span>
-            </router-link>
+          <span style="margin-top:2rem;"><button type="button" id="buttontutup" v-on:click="submitForm">Selesai</button></span>
         </div>
     </div>
 </template>
 <script>
 import TransactionServices from '@/services/TransactionServices';
+import TokenDataService from "@/services/TokenDataService.js";
+import LoginService from "@/services/LoginService.js";
+import axios from "axios";
 
 export default {
   name : "TopUpToken",
+  mounted(){
+    this.fetchData();
+  },
   data() {
     return {
-      data: {
-        id_user : "594486395839",
-        nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
-        saldoPembelian: 92000
-      },
+      tokenDataService: new TokenDataService(),
       transactionServices: new TransactionServices(),
-      dataToken:{
-          kodeyukpay:"102938 1209183092830912893021389012"
-      }
+      loginService: new LoginService(),
+      tokenId: "",
+      nama:"",
+      jumlahTopUp: null,
+      token:"",
+      saldo: null,
     };
   },
   methods: {
+      async fetchData() {
+        this.data = this.loginService.getCurrentUserLoginData();
+        this.tokenId = this.tokenDataService.getCurrentTokenId();
+        this.nama = this.data[0].nama;
+        this.id = this.data[0].id;
+        this.saldo = this.data[0].saldoYukPay;
+        axios
+          .get(`/topup/${this.tokenId}`)
+          .then((response) => {
+            this.token = response.data.data.kodeYukPay;
+            this.jumlahTopUp = response.data.data.nominal;
+          })
+          .catch((error) => {
+            console.log(error);
+            alert(error);
+          });
+      },
       submitForm(){
-          alert("Ya Selesai, mo gmn lagi")
+          axios
+            .put(`/topups/${this.id}/${this.tokenId}`, {
+              saldoYukPay: this.jumlahTopUp,
+            })
+            .then((response) => {
+              alert("Berhasil");
+              this.tokenDataService.removeTokenId();
+              console.log(response);
+              location.replace("/home");
+            })
+            .catch((error) =>  {
+              console.log(error);
+              alert(error);
+            });
       }
   }
 };
@@ -75,10 +108,8 @@ export default {
     position:relative;
 }
 .pembayaran_berhasil{
-    font-size:1.25rem;
     font-weight: bold;
     background:#78FFD7;
-    border-radius: 2rem;
     padding: 1rem;
     width : 300px;
     justify-content: center;

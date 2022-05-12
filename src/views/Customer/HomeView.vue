@@ -6,7 +6,7 @@
       </div>
       <div class="column"></div>
       <div class="column is-one-third title is-36 is-size-5-mobile">
-        Saldo : <span class="has-text-weight-bold">{{ saldoYukPay }}</span>
+        Saldo : <span class="has-text-weight-bold">{{ transactionServices.formatPrice(saldoYukPay) }}</span>
       </div>
     </div>
 
@@ -39,57 +39,69 @@
 </template>
 
 <script>
-import LoginService from "@/services/LoginService.js";
+  import LoginService from "@/services/LoginService.js";
+  import TransactionServices from '@/services/TransactionServices';
+  import axios from "axios";
 
-export default {
-  mounted() {
-    this.fetchData();
-  },
-  data() {
-    return {
-      nama: null,
-      saldoYukPay: null,
-      loginService: new LoginService(),
-    };
-  },
-  methods: {
-    async fetchData() {
-      this.data = this.loginService.getCurrentUserLoginData();
-      this.nama = this.data[0].nama;
-      this.saldoYukPay = this.data[0].saldoYukPay;
+  export default {
+    mounted() {
+      this.fetchData();
     },
-  },
-};
+    data() {
+      return {
+        transactionServices: new TransactionServices(),
+        id: "",
+        nama: null,
+        saldoYukPay: null,
+        loginService: new LoginService(),
+      };
+    },
+    methods: {
+      async fetchData() {
+        this.data = this.loginService.getCurrentUserLoginData();
+        this.id = this.data[0].id;
+        axios
+          .get(`/users/${this.id}`)
+          .then((response) => {
+            this.nama = response.data.data.nama;
+            this.saldoYukPay = response.data.data.saldoYukPay;
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      },
+    },
+  };
 </script>
 
 <style scoped>
-.column {
-  padding: 0;
-}
+  .column {
+    padding: 0;
+  }
 
-@media screen and (max-width: 667px) {
-  .font {
-    font-size: 25px !important;
+  @media screen and (max-width: 667px) {
+    .font {
+      font-size: 25px !important;
+    }
+    .hero-body {
+      padding-left: 24px !important;
+    }
   }
-  .hero-body {
-    padding-left: 24px !important;
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    .font {
+      font-size: 35px !important;
+    }
+    .hero-body {
+      padding-left: 36px !important;
+    }
   }
-}
-@media screen and (min-width: 668px) and (max-width: 1023px) {
-  .font {
-    font-size: 35px !important;
+  .image_div {
+    position: relative;
   }
-  .hero-body {
-    padding-left: 36px !important;
+  img {
+    width: 225px;
   }
-}
-.image_div {
-  position: relative;
-}
-img {
-  width: 225px;
-}
-.title {
-  color: #18234a;
-}
+  .title {
+    color: #18234a;
+  }
 </style>

@@ -2,7 +2,7 @@
   <div class="all">
     <div class="box_saldo">
       <p class="saldo">Saldo YukPay 
-          <span style="font-weight: bold; color:#223196 ; padding-left: 3%;"> Rp 1.975.000 </span>
+          <span style="font-weight: bold; color:#223196 ; padding-left: 3%;"> Rp {{ transactionServices.formatPrice(saldoYukPay) }} </span>
       </p>
     </div>
     <p class="metode_topup">Pilih Metode Top Up</p>
@@ -19,17 +19,17 @@
         <div class="box_nominal"><input type="radio" name="radio_nominal" value=1000000 v-model.number="topupData.nominal"/> Rp 1.000.000 </div>
     </div>
   <br>
-      <!-- <a href="/topup/pembayaran"> -->
         <span style="margin-top:2rem;">
           <button type="button" id="buttontopup" v-on:click="submitForm">Top Up Sekarang!</button>
         </span>
-      <!-- </a> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import LoginService from "@/services/LoginService.js";
+import TokenDataService from "@/services/TokenDataService.js";
+import TransactionServices from "@/services/TransactionServices";
 
 export default {
   name: "SignUp",
@@ -38,7 +38,8 @@ export default {
   },
   data() {
     return {
-      // id: "",
+      saldoYukPay: null,
+      id: "",
       topupData: {
         metode: null,
         nominal: 0.0,
@@ -46,17 +47,26 @@ export default {
         id_pengguna: "",
       },
       loginService: new LoginService(),
+      tokenDataService: new TokenDataService(),
+      transactionServices: new TransactionServices(),
     };
   },
   methods: {
     async fetchData() {
       this.data = this.loginService.getCurrentUserLoginData();
       this.topupData.id_pengguna = this.data[0].id;
-      const res = await axios.get("/users/" + this.id);
-      this.dataProfile = res.data.data;
-      console.log(this.topupData.id_pengguna);
+      this.id = this.data[0].id;
+      axios
+        .get(`/users/${this.id}`)
+        .then((response) => {
+          this.saldoYukPay = response.data.data.saldoYukPay;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     },
     submitForm() {
+      let tokenId;
       axios
         .post("/topups/topup", {
           metode: this.topupData.metode,
@@ -66,9 +76,10 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          tokenId = response.data.data.id;
+          this.tokenDataService.addToTokenId(tokenId);
           alert("Silahkan lakukan Pembayaran!");
-          // location.replace("/login");
-
+          location.replace("/topup/generate-token");
         })
         .catch((error) => {
           console.log(error);
