@@ -60,38 +60,61 @@ export default {
       this.nama = this.data[0].nama;
       this.saldoYukPay = this.data[0].saldoYukPay;
     },
-  },
-};
+    data() {
+      return {
+        transactionServices: new TransactionServices(),
+        id: "",
+        nama: null,
+        saldoYukPay: null,
+        loginService: new LoginService(),
+      };
+    },
+    methods: {
+      async fetchData() {
+        this.data = this.loginService.getCurrentUserLoginData();
+        this.id = this.data[0].id;
+        axios
+          .get(`/users/${this.id}`)
+          .then((response) => {
+            this.nama = response.data.data.nama;
+            this.saldoYukPay = response.data.data.saldoYukPay;
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      },
+    },
+  };
 </script>
 
 <style scoped>
-.column {
-  padding: 0;
-}
+  .column {
+    padding: 0;
+  }
 
-@media screen and (max-width: 667px) {
-  .font {
-    font-size: 25px !important;
+  @media screen and (max-width: 667px) {
+    .font {
+      font-size: 25px !important;
+    }
+    .hero-body {
+      padding-left: 24px !important;
+    }
   }
-  .hero-body {
-    padding-left: 24px !important;
+  @media screen and (min-width: 668px) and (max-width: 1023px) {
+    .font {
+      font-size: 35px !important;
+    }
+    .hero-body {
+      padding-left: 36px !important;
+    }
   }
-}
-@media screen and (min-width: 668px) and (max-width: 1023px) {
-  .font {
-    font-size: 35px !important;
+  .image_div {
+    position: relative;
   }
-  .hero-body {
-    padding-left: 36px !important;
+  img {
+    width: 225px;
   }
-}
-.image_div {
-  position: relative;
-}
-img {
-  width: 225px;
-}
-.title {
-  color: #18234a;
-}
+  .title {
+    color: #18234a;
+  }
 </style>

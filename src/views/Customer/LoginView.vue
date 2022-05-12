@@ -74,7 +74,7 @@ export default {
           userLoginData = response.data.data;
           this.loginService.addToCart(userLoginData);
           alert("Login Berhasil!!");
-          location.replace("/");
+          location.replace("/home");
         })
         .catch((error) => {
           console.log(error);
@@ -86,12 +86,6 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  /* background-image: url("../assets/Home/Asuransi.png");
-  background-repeat: no-repeat;
-  overflow: hidden;
-  background-size: cover; */
-}
 .box {
   width: 300px;
   height: 350px;
