@@ -14,6 +14,7 @@ import HistoryView from '../views/Customer/HistoryView.vue'
 import TopUpView from '../views/Customer/TopUpView.vue'
 import ProfileView from '../views/Customer/ProfileView.vue'
 import ProfileEditView from '../views/Customer/ProfileEditView.vue'
+import GenerateTokenView from '@/views/Customer/Transaksi/Pembayaran/TopUpToken.vue'
 
 //customer component (transaksi PLN)
 import PLNView from '@/views/Customer/Transaksi/PLNView.vue'
@@ -209,6 +210,10 @@ const routes = [{
         path:'/bo/pendapatan',
         name:'pendapatan',
         component:PendapatanView
+    },{
+        path:'/topup/generate-token',
+        name:'GenerateToken',
+        component:GenerateTokenView
     }
 ]
 
