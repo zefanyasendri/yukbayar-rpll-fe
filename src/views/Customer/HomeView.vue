@@ -6,7 +6,7 @@
       </div>
       <div class="column"></div>
       <div class="column is-one-third title is-36 is-size-5-mobile">
-        Saldo : <span class="has-text-weight-bold">{{ transactionServices.formatPrice(saldoYukPay) }}</span>
+        Saldo : <span class="has-text-weight-bold">Rp {{ transactionServices.formatPrice(saldoYukPay) }}</span>
       </div>
     </div>
 
@@ -39,13 +39,26 @@
 </template>
 
 <script>
-  import LoginService from "@/services/LoginService.js";
-  import TransactionServices from '@/services/TransactionServices';
-  import axios from "axios";
+import LoginService from "@/services/LoginService.js";
+import TransactionServices from '@/services/TransactionServices';
 
-  export default {
-    mounted() {
-      this.fetchData();
+export default {
+  mounted() {
+    this.fetchData();
+  },
+  data() {
+    return {
+      nama: null,
+      saldoYukPay: null,
+      loginService: new LoginService(),
+      transactionServices: new TransactionServices()
+    };
+  },
+  methods: {
+    async fetchData() {
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.nama = this.data[0].nama;
+      this.saldoYukPay = this.data[0].saldoYukPay;
     },
     data() {
       return {
