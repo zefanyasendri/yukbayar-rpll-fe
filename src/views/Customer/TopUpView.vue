@@ -7,28 +7,76 @@
     </div>
     <p class="metode_topup">Pilih Metode Top Up</p>
     <div class="form_control" style="font-size:1.5rem">
-      <div class="box_method"><input type="radio" name="radio_metode"/> Indomaret </div>
-      <div class="box_method"><input type="radio" name="radio_metode"/> Mobile Banking
-      </div>
-      <div class="box_method"><input type="radio" name="radio_metode"/> ATM
-      </div>
+      <div class="box_method"><input type="radio" name="radio_metode" value="M-Banking BCA" v-model="topupData.metode"/> M-Banking BCA </div>
+      <div class="box_method"><input type="radio" name="radio_metode" value="M-Banking Mandiri" v-model="topupData.metode"/> M-Banking Mandiri</div>
     </div>
     
     <p class="nominal_topup">Pilih Nominal Top Up</p>
     <div class="form_control" style="font-size:1.5rem">
-        <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 100.000 </div>
-        <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 200.000 </div>
-        <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 500.000 </div>
-        <div class="box_nominal"><input type="radio" name="radio_nominal"/> Rp 1.000.000 </div>
+        <div class="box_nominal"><input type="radio" name="radio_nominal" value=100000 v-model.number="topupData.nominal"/> Rp 100.000 </div>
+        <div class="box_nominal"><input type="radio" name="radio_nominal" value=200000 v-model.number="topupData.nominal"/> Rp 200.000 </div>
+        <div class="box_nominal"><input type="radio" name="radio_nominal" value=500000 v-model.number="topupData.nominal"/> Rp 500.000 </div>
+        <div class="box_nominal"><input type="radio" name="radio_nominal" value=1000000 v-model.number="topupData.nominal"/> Rp 1.000.000 </div>
     </div>
   <br>
-      <a href="/topup/generate-token">
+      <!-- <a href="/topup/pembayaran"> -->
         <span style="margin-top:2rem;">
-          <button type="button" id="buttontopup">Top Up Sekarang!</button>
+          <button type="button" id="buttontopup" v-on:click="submitForm">Top Up Sekarang!</button>
         </span>
-      </a>
+      <!-- </a> -->
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import LoginService from "@/services/LoginService.js";
+
+export default {
+  name: "SignUp",
+  mounted() {
+    this.fetchData();
+  },
+  data() {
+    return {
+      // id: "",
+      topupData: {
+        metode: null,
+        nominal: 0.0,
+        status: "Pending",
+        id_pengguna: "",
+      },
+      loginService: new LoginService(),
+    };
+  },
+  methods: {
+    async fetchData() {
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.topupData.id_pengguna = this.data[0].id;
+      const res = await axios.get("/users/" + this.id);
+      this.dataProfile = res.data.data;
+      console.log(this.topupData.id_pengguna);
+    },
+    submitForm() {
+      axios
+        .post("/topups/topup", {
+          metode: this.topupData.metode,
+          nominal: this.topupData.nominal,
+          status: this.topupData.status,
+          id_pengguna: this.topupData.id_pengguna,
+        })
+        .then((response) => {
+          console.log(response.data);
+          alert("Silahkan lakukan Pembayaran!");
+          // location.replace("/login");
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
+</script>
 
 <style scoped>
 
