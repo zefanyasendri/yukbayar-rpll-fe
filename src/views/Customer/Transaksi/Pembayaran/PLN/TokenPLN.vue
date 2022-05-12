@@ -9,7 +9,7 @@
                   maxlength="12"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   size="is-medium"
-                  style="text-align:center;width: 50%;margin:auto;justify-items:center;"></b-input>
+                  style="text-align:center;width: 50%;margin:auto;justify-items:center;" required></b-input>
               </b-field>
             </div>
         </div>
@@ -19,21 +19,21 @@
 
         <section>
           <div class="nominal_selection">
-            <b-field label="Pilih Nominal">
+            <b-field label="Pilih Nominal" required>
               <b-radio-button v-model="pln.pilihan_saldo"
-                native-value="20000"
+                native-value=20000
                 type="is-primary is-light is-outlined">
                 <!--Button 20rb-->
                   Rp 20.000
               </b-radio-button>
               <b-radio-button v-model="pln.pilihan_saldo"
-                native-value="50000"
+                native-value=50000
                 type="is-primary is-light is-outlined">
                 <!--Button 50rb-->
                   Rp 50.000
               </b-radio-button>
               <b-radio-button v-model="pln.pilihan_saldo"
-                native-value="100000"
+                native-value=100000
                 type="is-primary is-light is-outlined">
                 <!--Button 100rb-->
                   Rp 100.000
@@ -45,13 +45,13 @@
                   Rp 150.000
               </b-radio-button>
               <b-radio-button v-model="pln.pilihan_saldo"
-                native-value="500000"
+                native-value=500000
                 type="is-primary is-light is-outlined">
                 <!--Button 500rb-->
                   Rp 500.000
               </b-radio-button>
               <b-radio-button v-model="pln.pilihan_saldo"
-                native-value="1000000"
+                native-value=1000000
                 type="is-primary is-light is-outlined">
                 <!--Button 1jt-->
                   Rp 1.000.000
@@ -65,29 +65,81 @@
             <option value='kupon_2'>Kupon 5% Anniversary YukBayar</option>
           </select>
           <div class="button_listrik">
-            <router-link to="/Customer/Transaksi/PLN/Token/Konfirmasi">
-              <span style="margin-top:2rem;"><button type="button" id="buttonlistrik">Lanjutkan Pembayaran</button></span>
-            </router-link>
+            <span style="margin-top:2rem;"><button type="button" id="buttonlistrik" v-on:click="submitForm">Lanjutkan Pembayaran</button></span>
           </div>
         </div>
     </div>
 </template>
 <script>
 import TransactionServices from '@/services/TransactionServices';
+import LoginService from "@/services/LoginService";
+// import axios from "axios";
 
 export default {
+  mounted() {
+    this.fetchData();
+  },
   name : "PLN_Token",
   data() {
     return {
+      dataUser : [],
       pln: {
         nomor_pelanggan: "",
-        pilihan_saldo: "",
+        pilihan_saldo: null,
         kupon: "",
-        saldo_user: 200000
+        nama : null,
+        saldo_user: null,
+        id_user: null,
+        jenisVarian : "",
       },
-      transactionServices: new TransactionServices()
+      transactionServices: new TransactionServices(),
+      loginService: new LoginService()
     };
   },
+  methods : {
+    async fetchData() {
+      this.data = this.loginService.getCurrentUserLoginData();
+      this.pln.nama = this.data[0].nama;
+      this.pln.saldo_user = this.data[0].saldoYukPay;
+      this.pln.id_user = this.data[0].id
+      alert("Data" + this.dataUser[0].nama)
+      // const res = await axios.get("/users/" + this.id);
+      // this.dataProfile = res.data.data;
+    },
+    submitForm() {
+      let perbandingan = this.pln.saldo_user
+      let saldoPilihan = this.pln.pilihan_saldo
+      if(perbandingan < saldoPilihan){
+        this.pln.pilihan_saldo = null
+        alert("Saldo anda tidak cukup!!")
+      } else if (this.pln.nomor_pelanggan == null || this.pln.nomor_pelanggan == "" || this.pln.nomor_pelanggan == " " || this.pln.nomor_pelanggan.length != 12){
+        alert("Nomor Token Listrik belum terisi atau tidak valid")
+      } else {
+        if (saldoPilihan == null || saldoPilihan == 0){
+          alert("Anda belum memilih pilihan saldo!")
+        } else {
+          if (saldoPilihan == 20000){
+            this.pln.jenisVarian = "V1"
+          } else if (saldoPilihan == 50000){
+            this.pln.jenisVarian = "V2"
+          } else if (saldoPilihan == 100000){
+            this.pln.jenisVarian = "V3"
+          } else if (saldoPilihan == 150000){
+            this.pln.jenisVarian = "V4"
+          } else if (saldoPilihan == 500000){
+            this.pln.jenisVarian = "V5"
+          } else if (saldoPilihan == 1000000){
+            this.pln.jenisVarian = "V6"
+          }
+          let dataTransaksi = [];
+          dataTransaksi = this.pln
+          this.transactionServices.addToCart(dataTransaksi)
+          alert("Data :" + this.pln.pilihan_saldo)
+          location.replace("/Customer/Transaksi/PLN/Token/Konfirmasi")
+        }
+      }
+    },
+  }
 };
 
 </script>
