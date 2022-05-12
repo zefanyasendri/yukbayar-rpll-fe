@@ -156,7 +156,6 @@
 </template>
 
 <script>
-import ProfileServices from "@/services/ProfileServices";
 import axios from "axios";
 import LoginService from "@/services/LoginService.js";
 
@@ -168,7 +167,6 @@ export default {
     return {
       id: "",
       dataProfile: [],
-      profileServices: new ProfileServices(),
       loginService: new LoginService(),
     };
   },

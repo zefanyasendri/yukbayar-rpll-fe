@@ -77,7 +77,7 @@
       <div class="column is-1 mt-3"> : </div>
       <div class=" column ">
         <div class="control has-icons-right">
-          <input class="input subtitle is-4" id="password-lama" type="password" :value="profileServices.hidePassword(dataProfile.password)">
+          <input class="input subtitle is-4" id="password-lama" type="password" placeholder="Silahkan masukkan password lama">
           <span class="icon is-right mb-4 pl-3 mt-3 mr-3 is-clickable" v-on:click="toggleLama()">
             <i class="fa fa-eye" aria-hidden="true" id="eye" ></i>
           </span>
@@ -92,7 +92,7 @@
       <div class="column is-1 mt-3"> : </div>
       <div class="column">
         <div class="control has-icons-right">
-          <input class="input subtitle is-4" id="password-baru" type="password" :value="profileServices.hidePassword(dataProfile.password)">
+          <input class="input subtitle is-4" id="password-baru" type="password" placeholder="Silahkan masukkan password baru" v-model="person.password">
           <span class="icon is-right mb-4 pl-3 mt-3 mr-3 is-clickable" v-on:click="toggleBaru()">
             <i class="fa fa-eye" aria-hidden="true" id="eye" ></i>
           </span>
@@ -103,7 +103,7 @@
     <div class="field">
       <p class="control">
         <router-link to="/Profile">
-          <button class="button is-rounded has-text-weight-bold subtitle is-5">Simpan</button>
+          <button class="button is-rounded has-text-weight-bold subtitle is-5" v-on:click="submitForm">Simpan</button>
         </router-link>
       </p>
     </div>
@@ -113,6 +113,7 @@
 <script>
   import axios from "axios";
   import ProfileServices from "@/services/ProfileServices";
+  import LoginService from "@/services/LoginService.js";
   var state = false;
 
 
@@ -122,13 +123,23 @@
     },
     data() {
       return {
+        id: "",
+        person : {
+          nama:"",
+          password: "",
+          email: "",
+          noTelpon: "",
+        },
         dataProfile: [],
+        loginService: new LoginService(),
         profileServices: new ProfileServices(),
       };
     },
     methods: {
       async fetchData() {
-        const res = await axios.get("/users/5f4a2a6c-0849-4e6c-b4c7-575be444");
+        this.data = this.loginService.getCurrentUserLoginData();
+        this.id = this.data[0].id;
+        const res = await axios.get("/users/" + this.id);
         this.dataProfile = res.data.data;
       },
       toggleLama(){
@@ -148,7 +159,22 @@
           document.getElementById("password-baru").setAttribute("type", "text");
           state = true;
         }
-      }
+      },
+      submitForm() {
+        axios
+          .put(`/users/${this.id}`, this.person)
+          // .put(`/users/${this.id}`, {
+          //   password: newPassword
+          // })
+          .then((response) => {
+            console.log(response);
+            alert("Update Profile Berhasil!");
+          })
+          .catch((error) => {
+            console.log(error);
+            alert(error.message);
+          });
+      },
     },
   };
 </script>
