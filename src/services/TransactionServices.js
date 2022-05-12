@@ -16,4 +16,11 @@ export default class TransactionServices {
         }
         return total
     }
+    countByTopUp(arrayData){
+        var total = 0
+        for(var value in arrayData){
+            total += value.nominal
+        }
+        return total
+    }
 }
