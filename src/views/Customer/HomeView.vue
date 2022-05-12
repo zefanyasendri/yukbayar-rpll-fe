@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import LoginService from "@/services/LoginService.js";
 import TransactionServices from '@/services/TransactionServices';
 
@@ -54,21 +55,6 @@ export default {
       transactionServices: new TransactionServices()
     };
   },
-  methods: {
-    async fetchData() {
-      this.data = this.loginService.getCurrentUserLoginData();
-      this.nama = this.data[0].nama;
-      this.saldoYukPay = this.data[0].saldoYukPay;
-    },
-    data() {
-      return {
-        transactionServices: new TransactionServices(),
-        id: "",
-        nama: null,
-        saldoYukPay: null,
-        loginService: new LoginService(),
-      };
-    },
     methods: {
       async fetchData() {
         this.data = this.loginService.getCurrentUserLoginData();
