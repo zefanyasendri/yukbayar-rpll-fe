@@ -2,7 +2,7 @@
   <div class="all container is-fluid">
     <div class="columns mt-2 ml-6 mr-6 mb-2 is-family-sans-serif">
       <div class="column is-one-third title is-36 is-size-5-mobile">
-        {{ nama }}
+        Hello, {{ nama }}
       </div>
       <div class="column"></div>
       <div class="column is-one-third title is-36 is-size-5-mobile">
