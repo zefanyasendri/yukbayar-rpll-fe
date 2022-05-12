@@ -10,7 +10,6 @@
         <div class="big_container" style=''>
           <div class="container_1">
               <h1 class="">No.Meter</h1>
-              <h1 class="">ID User</h1>
               <h1 class="">Nama User</h1>
               <h1 class="">Stroom Token</h1>
           </div>
@@ -19,20 +18,16 @@
               <h1 class="titik2atas">:</h1>
               <h1 class="titik2atas">:</h1>
               <h1 class="titik2atas">:</h1>
-              <h1 class="titik2atas">:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
               <h1 class="con_kanan">{{order.nomor_pelanggan}}</h1>
-              <h1 class="con_kanan">{{order.id_user}}</h1>
               <h1 class="con_kanan">{{order.nama_user}}</h1>
               <h1 class="con_kanan">{{order.stroom}}</h1>
           </div>
         </div> 
         <div class="tutup">
-            <router-link to="/">
-              <span style="margin-top:2rem;"><button type="button" id="buttontutup">Tutup</button></span>
-            </router-link>
+            <span style="margin-top:2rem;"><button type="button" id="buttontutup" v-on:click="submitForm">Tutup</button></span>
         </div>
     </div>
 </template>
@@ -40,20 +35,49 @@
 import TransactionServices from '@/services/TransactionServices';
 
 export default {
+  mounted() {
+    this.fetchData();
+  },
   name : "PLN_Token_Konfirmation",
   data() {
     return {
       order: {
-        nomor_pelanggan: "01101520905",
-        id_user : "594486395839",
-        nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
-        biaya: 92000,
-        stroom: "6849-3944-3848-3848-2859",
-        saldo_user:108000
+        nomor_pelanggan: null,
+        id_user : null,
+        nama_user: null,
+        biaya: null,
+        stroom: null,
+        saldo_user:null
       },
       transactionServices: new TransactionServices()
     };
   },
+  methods : {
+    async fetchData() {
+      this.data = this.transactionServices.getCurrentTokenTransactionData();
+      this.order.nama_user = this.data[0].nama_user
+      this.order.saldo_user = this.data[0].saldo_akhir
+      this.order.nomor_pelanggan = this.data[0].nomor_pelanggan
+      this.order.biaya = this.data[0].biaya_akhir
+      this.order.id_user = this.data[0].id_user
+      this.order.stroom = this.generateStroom()
+    },
+    generateStroom(){
+      var str = ""
+      for(let i = 1; i < 25; i++){
+        if ((i%5)==0){
+          str += "-"
+        } else {
+          str += Math.floor(Math.random() * 10).toString()
+        }
+      }
+      return str
+    },
+    submitForm(){
+      this.transactionServices.removeFromCart()
+      location.replace("/")
+    }
+  }
 };
 
 </script>

@@ -67,6 +67,7 @@
 <script>
 // import axios from "axios";
 import LoginService from "@/services/LoginService";
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   name: "MyNavigation",
@@ -78,6 +79,7 @@ export default {
       windowWidth: null,
       userType: "",
       loginService: new LoginService(),
+      transactionService: new TransactionServices()
     };
   },
   created() {
@@ -117,6 +119,7 @@ export default {
     // },
     async logout() {
       this.loginService.removeFromCart();
+      this.transactionService.removeFromCart();
       location.replace("/");
       alert("Logout Berhasil!!");
     },

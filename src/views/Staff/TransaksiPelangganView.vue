@@ -174,7 +174,6 @@ export default {
         .then(axios.spread((res1, res2) => {
           this.dataTransaksi = res1.data.data;
           this.dataTopUp = res2.data.data;
-          console.log(this.transaksiData);
         }))
         .catch((error) => {
           console.log(error);

@@ -6,7 +6,7 @@
       </div>
       <div class="column"></div>
       <div class="column is-one-third title is-36 is-size-5-mobile">
-        Saldo : <span class="has-text-weight-bold">{{ saldoYukPay }}</span>
+        Saldo : <span class="has-text-weight-bold">Rp {{ transactionServices.formatPrice(saldoYukPay) }}</span>
       </div>
     </div>
 
@@ -40,6 +40,7 @@
 
 <script>
 import LoginService from "@/services/LoginService.js";
+import TransactionServices from '@/services/TransactionServices';
 
 export default {
   mounted() {
@@ -50,6 +51,7 @@ export default {
       nama: null,
       saldoYukPay: null,
       loginService: new LoginService(),
+      transactionServices: new TransactionServices()
     };
   },
   methods: {

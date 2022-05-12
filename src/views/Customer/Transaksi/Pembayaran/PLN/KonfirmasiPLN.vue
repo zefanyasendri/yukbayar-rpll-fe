@@ -5,19 +5,16 @@
         <div class="big_container">
           <div class="container_1">
               <h1 class="">No.Meter</h1>
-              <h1 class="">ID User</h1>
               <h1 class="">Nama User</h1>
           </div>
         
           <div class="container_2">
               <h1 class="titik2atas">:</h1>
               <h1 class="titik2atas">:</h1>
-              <h1 class="titik2atas">:</h1>
           </div>
 
           <div class="container_3" style="margin-left: 1rem;">
               <h1 class="con_kanan">{{order.nomor_pelanggan}}</h1>
-              <h1 class="con_kanan">{{order.id_user}}</h1>
               <h1 class="con_kanan">{{order.nama_user}}</h1>
           </div>
           
@@ -27,7 +24,7 @@
         <div class="big_container">
           
           <div class="container_1">
-              <h1 class="">Token Listrik</h1>
+              <h1 class="">Biaya Token Listrik</h1>
               <h1 class="">Biaya Transaksi</h1>
               <h1 style='font-weight:bold;'>Diskon</h1>
               <h1 style='font-weight:bold;'>Total Pembayaran</h1>
@@ -47,44 +44,106 @@
           <div class="container_3" style="margin-left: 1rem;">
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_administrasi)}}</h1>
-              <h1 class="con_kanan" style='color:red;'>Rp {{transactionServices.formatPrice(order.diskon * order.biaya)}}</h1>
-              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi)}}</h1>
+              <h1 class="con_kanan" style='color:red;'>Rp {{countDiskon()}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(countBiayaAkhir(order.biaya_administrasi, order.diskon, order.biaya))}}</h1>
               <h1 class="con_kanan" style='color:blue;'>Rp {{transactionServices.formatPrice(order.saldo_user)}}</h1>
-              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.saldo_user - (order.biaya - (order.diskon * order.biaya) + order.biaya_administrasi))}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(countSaldoAkhir())}}</h1>
           </div>
         </div>
       </div>
       <div class="bagian_kanan">
         <div class="button_pembayaran">
-            <router-link to="/Customer/Transaksi/PLN/Token/Konfirmasi/Berhasil">
-              <span style="margin-top:50%;"><button type="button" id="button_lanjut_pembayaran">Konfirmasi</button></span>
-            </router-link>
-            <router-link to="/Customer/Transaksi/PLN/Token">
-              <span style="margin-top:2rem;"><button type="button" id="button_batal_pembayaran">Batal</button></span>
-            </router-link>
+            <span style="margin-top:50%;"><button type="button" id="button_lanjut_pembayaran" v-on:click="submitForm">Konfirmasi</button></span>
+            <span style="margin-top:2rem;"><button type="button" id="button_batal_pembayaran" v-on:click="clearForm">Batal</button></span>
         </div>
       </div>
     </div>
 </template>
 <script>
 import TransactionServices from '@/services/TransactionServices';
+import axios from "axios";
 
 export default {
+  mounted() {
+    this.fetchData();
+  },
   name : "PLN_Token_Konfirmation",
   data() {
     return {
       order: {
-        nomor_pelanggan: "0110152090512345",
-        id_user : "594486395839",
-        nama_user: "Hanx Xxxxxx Sxxxxx Xxxba",
-        biaya: 100000,
-        diskon: 0.1,
+        nomor_pelanggan: null,
+        biaya: null,
+        diskon: 0,
         biaya_administrasi : 2000,
-        saldo_user: 200000
+        biaya_akhir : null,
+        nama_user: null,
+        saldo_user: null,
+        saldo_akhir : null,
+        id_user: null,
+        id_varian : null
       },
-      transactionServices: new TransactionServices()
+      transactionServices: new TransactionServices(),
+      dataTransaksi: {
+        id_pengguna : null,
+        totalHarga : null,
+        id_varian : null,
+        status: null,
+      },
     };
   },
+  methods : {
+    async fetchData() {
+      this.data = this.transactionServices.getCurrentTokenTransactionData();
+      this.order.nama_user = this.data[0].nama
+      this.order.saldo_user = this.data[0].saldo_user
+      this.order.nomor_pelanggan = this.data[0].nomor_pelanggan
+      this.order.biaya = this.data[0].pilihan_saldo
+      this.order.diskon = this.data[0].kupon
+      this.order.id_varian = this.data[0].jenisVarian
+      this.order.id_user = this.data[0].id_user
+    },
+    countDiskon(){
+      this.diskon = this.diskon * this.biaya
+      return this.diskon
+    },
+    countBiayaAkhir(biayaAdmin, kuponDiskon, biaya){
+      this.order.biaya_akhir = (biaya - (biaya* kuponDiskon)) + biayaAdmin 
+      return this.order.biaya_akhir
+    },
+    countSaldoAkhir(){
+      this.order.saldo_akhir = this.order.saldo_user - this.order.biaya_akhir
+      return this.order.saldo_akhir
+    },
+    submitForm(){
+        var bodyFormData = new FormData();
+        bodyFormData.append('saldo',this.order.saldo_akhir)
+        const axiosrequest1 = axios.post("/transaksi/", {
+          totalHarga: this.order.biaya_akhir,
+          id_pengguna: this.order.id_user,
+          id_varian: this.order.id_varian,
+          status: "Paid",
+        });
+        const axiosrequest2 = axios({
+          method: "put",
+          url: `/users/${this.order.id_user}/saldo`,
+          data: bodyFormData,
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+        axios.all([axiosrequest1, axiosrequest2])
+        .then(
+          this.transactionServices.removeFromCart(),
+          this.transactionServices.addToCart(this.order),
+          location.replace("/Customer/Transaksi/PLN/Token/Konfirmasi/Berhasil")
+        )
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    clearForm(){
+      this.transactionServices.removeFromCart()
+      location.replace("/Customer/Transaksi/PLN/Token")
+    }
+  }
 };
 
 </script>
