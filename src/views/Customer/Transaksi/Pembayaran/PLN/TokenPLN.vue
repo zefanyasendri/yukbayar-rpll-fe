@@ -112,7 +112,7 @@ export default {
       this.pln.id_user = this.data[0].id;
 
       //axios
-      const axiosrequest1 = axios.get(`/users/${this.pln.id_user}`);
+      const axiosrequest1 = axios.get(`/users/id/${this.pln.id_user}`);
       const axiosrequest2 = axios.get('/diskon/');
       axios.all([axiosrequest1, axiosrequest2])
         .then(axios.spread((res1, res2) => {
