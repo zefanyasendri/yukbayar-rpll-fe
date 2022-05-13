@@ -57,7 +57,7 @@ export default {
       this.topupData.id_pengguna = this.data[0].id;
       this.id = this.data[0].id;
       axios
-        .get(`/users/${this.id}`)
+        .get(`/users/id/${this.id}`)
         .then((response) => {
           this.saldoYukPay = response.data.data.saldoYukPay;
         })
