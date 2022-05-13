@@ -73,7 +73,7 @@
           has-text-left-desktop
         "
       >
-        {{ dataProfile.saldoYukPay }}
+        Rp. {{ transactionServices.formatPrice(dataProfile.saldoYukPay) }}
       </div>
     </div>
 
@@ -158,6 +158,7 @@
 <script>
 import axios from "axios";
 import LoginService from "@/services/LoginService.js";
+import TransactionServices from "@/services/TransactionServices";
 
 export default {
   mounted() {
@@ -168,6 +169,7 @@ export default {
       id: "",
       dataProfile: [],
       loginService: new LoginService(),
+      transactionServices: new TransactionServices(),
     };
   },
   methods: {
