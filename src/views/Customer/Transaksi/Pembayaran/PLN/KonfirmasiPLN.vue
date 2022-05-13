@@ -70,6 +70,7 @@ export default {
   name : "PLN_Token_Konfirmation",
   data() {
     return {
+      // statusPaid: "Paid",
       order: {
         nomor_pelanggan: null,
         biaya: null,
@@ -103,7 +104,10 @@ export default {
       this.order.id_user = this.data[0].id_user
     },
     countDiskon(){
-      this.diskon = this.diskon * this.biaya
+      this.order.diskon = this.order.diskon * this.order.biaya
+      if(this.order.diskon==0){
+        return 0
+      }
       return this.diskon
     },
     countBiayaAkhir(biayaAdmin, kuponDiskon, biaya){
@@ -115,14 +119,13 @@ export default {
       return this.order.saldo_akhir
     },
     submitForm(){
-        var bodyFormData = new FormData();
-        bodyFormData.append('saldo',this.order.saldo_akhir)
         const axiosrequest1 = axios.post("/transaksi/", {
           totalHarga: this.order.biaya_akhir,
           id_pengguna: this.order.id_user,
           id_varian: this.order.id_varian,
-          status: "Paid",
         });
+        var bodyFormData = new FormData();
+        bodyFormData.append('saldo',this.order.saldo_akhir)
         const axiosrequest2 = axios({
           method: "put",
           url: `/users/${this.order.id_user}/saldo`,

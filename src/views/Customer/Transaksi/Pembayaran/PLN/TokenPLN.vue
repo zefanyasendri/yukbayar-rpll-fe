@@ -73,7 +73,7 @@
 <script>
 import TransactionServices from '@/services/TransactionServices';
 import LoginService from "@/services/LoginService";
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   mounted() {
@@ -98,10 +98,18 @@ export default {
   },
   methods : {
     async fetchData() {
+      this.transactionServices.removeFromCart()
       this.data = this.loginService.getCurrentUserLoginData();
       this.pln.nama = this.data[0].nama;
-      this.pln.saldo_user = this.data[0].saldoYukPay;
       this.pln.id_user = this.data[0].id
+      axios
+          .get(`/users/${this.pln.id_user}`)
+          .then((response) => {
+            this.pln.saldo_user = response.data.data.saldoYukPay;
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       alert("Data" + this.dataUser[0].nama)
       // const res = await axios.get("/users/" + this.id);
       // this.dataProfile = res.data.data;
@@ -113,7 +121,7 @@ export default {
         this.pln.pilihan_saldo = null
         alert("Saldo anda tidak cukup!!")
       } else if (this.pln.nomor_pelanggan == null || this.pln.nomor_pelanggan == "" || this.pln.nomor_pelanggan == " " || this.pln.nomor_pelanggan.length != 12){
-        alert("Nomor Token Listrik belum terisi atau tidak valid")
+          alert("Nomor Token Listrik belum terisi atau tidak valid")
       } else {
         if (saldoPilihan == null || saldoPilihan == 0){
           alert("Anda belum memilih pilihan saldo!")

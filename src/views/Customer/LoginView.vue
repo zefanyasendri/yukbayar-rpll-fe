@@ -74,7 +74,13 @@ export default {
           userLoginData = response.data.data;
           this.loginService.addToCart(userLoginData);
           alert("Login Berhasil!!");
-          location.replace("/home");
+          if(response.data.data.tipePengguna=="customer"){
+            location.replace("/home");
+          } else if(response.data.data.tipePengguna=="owner"){
+            location.replace("/bo/transaksipelanggan");
+          } else if(response.data.data.tipePengguna=="staff"){
+            location.replace("/staff/transaksipelanggan");
+          } 
         })
         .catch((error) => {
           console.log(error);
