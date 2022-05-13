@@ -1,45 +1,17 @@
 <template>
-    <div class="all">
-      <div class="bagian_kiri">
-        <h1 class="text_green">Informasi Pelanggan</h1>
-        <div class="big_container">
-          <div class="container_1">
-              <h1 class="">No.Meter</h1>
-              <h1 class="">Nama User</h1>
-          </div>
-        
-          <div class="container_2">
-              <h1 class="titik2atas">:</h1>
-              <h1 class="titik2atas">:</h1>
-          </div>
+  <div class="all">
+    <div class="bagian_kiri">
+      <h1 class="text_green">Informasi Pelanggan</h1>
+      <div class="big_container">
+        <div class="container_1">
+          <h1 class="">No.Meter</h1>
+          <h1 class="">Nama User</h1>
+        </div>
 
-          <div class="container_3" style="margin-left: 1rem;">
-              <h1 class="con_kanan">{{order.nomor_pelanggan}}</h1>
-              <h1 class="con_kanan">{{order.nama_user}}</h1>
-          </div>
-          
-        </div> 
-        <h1 class="text_green">Detail Pembayaran</h1>
-
-        <div class="big_container">
-          
-          <div class="container_1">
-              <h1 class="">Biaya Token Listrik</h1>
-              <h1 class="">Biaya Transaksi</h1>
-              <h1 style='font-weight:bold;'>Diskon</h1>
-              <h1 style='font-weight:bold;'>Total Pembayaran</h1>
-              <h1 style='font-weight:bold;'>Saldo Anda</h1>
-              <h1 style='font-weight:bold;'>Saldo Akhir</h1>
-          </div>
-        
-          <div class="container_2">
-              <h1>:</h1>
-              <h1>:</h1>
-              <h1>:</h1>
-              <h1>:</h1>
-              <h1>:</h1>
-              <h1>:</h1>
-          </div>
+        <div class="container_2">
+          <h1 class="titik2atas">:</h1>
+          <h1 class="titik2atas">:</h1>
+        </div>
 
           <div class="container_3" style="margin-left: 1rem;">
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
@@ -51,23 +23,91 @@
           </div>
         </div>
       </div>
-      <div class="bagian_kanan">
-        <div class="button_pembayaran">
-            <span style="margin-top:50%;"><button type="button" id="button_lanjut_pembayaran" v-on:click="submitForm">Konfirmasi</button></span>
-            <span style="margin-top:2rem;"><button type="button" id="button_batal_pembayaran" v-on:click="clearForm">Batal</button></span>
+      <h1 class="text_green">Detail Pembayaran</h1>
+
+      <div class="big_container">
+        <div class="container_1">
+          <h1 class="">Biaya Token Listrik</h1>
+          <h1 class="">Biaya Transaksi</h1>
+          <h1 style="font-weight: bold">Diskon</h1>
+          <h1 style="font-weight: bold">Total Pembayaran</h1>
+          <h1 style="font-weight: bold">Saldo Anda</h1>
+          <h1 style="font-weight: bold">Saldo Akhir</h1>
+        </div>
+
+        <div class="container_2">
+          <h1>:</h1>
+          <h1>:</h1>
+          <h1>:</h1>
+          <h1>:</h1>
+          <h1>:</h1>
+          <h1>:</h1>
+        </div>
+
+        <div class="container_3" style="margin-left: 1rem">
+          <h1 class="con_kanan">
+            Rp {{ transactionServices.formatPrice(order.biaya) }}
+          </h1>
+          <h1 class="con_kanan">
+            Rp {{ transactionServices.formatPrice(order.biaya_administrasi) }}
+          </h1>
+          <h1 class="con_kanan" style="color: red">
+            Rp {{ transactionServices.formatPrice(countDiskon()) }}
+          </h1>
+          <h1 class="con_kanan">
+            Rp
+            {{
+              transactionServices.formatPrice(
+                countBiayaAkhir(
+                  order.biaya_administrasi,
+                  order.diskon,
+                  order.biaya
+                )
+              )
+            }}
+          </h1>
+          <h1 class="con_kanan" style="color: blue">
+            Rp {{ transactionServices.formatPrice(order.saldo_user) }}
+          </h1>
+          <h1 class="con_kanan">
+            Rp {{ transactionServices.formatPrice(countSaldoAkhir()) }}
+          </h1>
         </div>
       </div>
     </div>
+    <div class="bagian_kanan">
+      <div class="button_pembayaran">
+        <span style="margin-top: 50%"
+          ><button
+            type="button"
+            id="button_lanjut_pembayaran"
+            v-on:click="submitForm"
+          >
+            Konfirmasi
+          </button></span
+        >
+        <span style="margin-top: 2rem"
+          ><button
+            type="button"
+            id="button_batal_pembayaran"
+            v-on:click="clearForm"
+          >
+            Batal
+          </button></span
+        >
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-import TransactionServices from '@/services/TransactionServices';
+import TransactionServices from "@/services/TransactionServices";
 import axios from "axios";
 
 export default {
   mounted() {
     this.fetchData();
   },
-  name : "PLN_Token_Konfirmation",
+  name: "PLN_Token_Konfirmation",
   data() {
     return {
       // statusPaid: "Paid",
@@ -79,20 +119,20 @@ export default {
         biaya_akhir : null,
         nama_user: null,
         saldo_user: null,
-        saldo_akhir : null,
+        saldo_akhir: null,
         id_user: null,
-        id_varian : null
+        id_varian: null,
       },
       transactionServices: new TransactionServices(),
       dataTransaksi: {
-        id_pengguna : null,
-        totalHarga : null,
-        id_varian : null,
+        id_pengguna: null,
+        totalHarga: null,
+        id_varian: null,
         status: null,
       },
     };
   },
-  methods : {
+  methods: {
     async fetchData() {
       this.data = this.transactionServices.getCurrentTokenTransactionData();
       this.order.nama_user = this.data[0].nama
@@ -116,9 +156,9 @@ export default {
       this.order.biaya_akhir = (biaya - this.countDiskon()) + biayaAdmin 
       return this.order.biaya_akhir
     },
-    countSaldoAkhir(){
-      this.order.saldo_akhir = this.order.saldo_user - this.order.biaya_akhir
-      return this.order.saldo_akhir
+    countSaldoAkhir() {
+      this.order.saldo_akhir = this.order.saldo_user - this.order.biaya_akhir;
+      return this.order.saldo_akhir;
     },
     submitForm(){
         const axiosrequest1 = axios.post("/transaksi/", {
@@ -144,13 +184,12 @@ export default {
           console.log(error);
         });
     },
-    clearForm(){
-      this.transactionServices.removeFromCart()
-      location.replace("/Customer/Transaksi/PLN/Token")
-    }
-  }
+    clearForm() {
+      this.transactionServices.removeFromCart();
+      location.replace("/Customer/Transaksi/PLN/Token");
+    },
+  },
 };
-
 </script>
 <style scoped>
 @media screen and (max-width: 667px) {
@@ -169,59 +208,59 @@ export default {
     padding-left: 36px !important;
   }
 }
-.all{
-    margin-top: -1rem;
-    margin-left: 10%;
-    text-align: left;
-    display:flex;
-    position:relative;
+.all {
+  margin-top: -1rem;
+  margin-left: 10%;
+  text-align: left;
+  display: flex;
+  position: relative;
 }
-.text_green{
-    font-size:1.25rem;
-    font-weight: bold;
-    background:#78FFD7;
-    border-radius: 2rem;
-    padding: 1rem;
+.text_green {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: #78ffd7;
+  border-radius: 2rem;
+  padding: 1rem;
 }
-.container_1{
-    width: 250px;
-    font-size:1.25rem;
-    border: 2px solid white;
+.container_1 {
+  width: 250px;
+  font-size: 1.25rem;
+  border: 2px solid white;
 }
-.container_2{
-    font-size:1.25rem;
+.container_2 {
+  font-size: 1.25rem;
 }
-.container_3{
-    width: 300px;
-    font-size:1.25rem;
+.container_3 {
+  width: 300px;
+  font-size: 1.25rem;
 }
-.con_kanan{
-    margin-bottom:-0.15rem;
-    padding-left: 1rem;
-    border: 1px solid white;
-    box-shadow: 1px 0.5px 2px 0 black;
+.con_kanan {
+  margin-bottom: -0.15rem;
+  padding-left: 1rem;
+  border: 1px solid white;
+  box-shadow: 1px 0.5px 2px 0 black;
 }
-.big_container{
-    display:flex;
+.big_container {
+  display: flex;
 }
-h1{
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
+h1 {
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
 }
-.bagian_kiri{
-    float:left;
+.bagian_kiri {
+  float: left;
 }
-.bagian_kanan{
-  margin:auto;
-  display:block;
+.bagian_kanan {
+  margin: auto;
+  display: block;
   text-align: center;
   align-items: center;
 }
-.button_pembayaran{
+.button_pembayaran {
   top: 50%;
-  position:relative;
+  position: relative;
 }
-#button_lanjut_pembayaran{
+#button_lanjut_pembayaran {
   background-color: #223196;
   box-shadow: 2px 2px 2px;
   border: none;
@@ -237,7 +276,7 @@ h1{
   text-decoration: none;
   width: 150px;
 }
-#button_batal_pembayaran{
+#button_batal_pembayaran {
   background-color: white;
   box-shadow: 2px 2px 2px;
   border: none;
