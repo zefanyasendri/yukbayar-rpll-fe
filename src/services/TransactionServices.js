@@ -24,7 +24,7 @@ export default class TransactionServices {
         return total
     }
 
-    //PLN section
+    //PLN section for token
     constructor() {
         this.KEY = "PLN-TOKEN";
     }
@@ -46,5 +46,6 @@ export default class TransactionServices {
     removeFromCart() {
         localStorage.removeItem(this.KEY)
     }
+    
       
 }
