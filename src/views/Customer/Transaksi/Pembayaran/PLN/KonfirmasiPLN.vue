@@ -45,7 +45,7 @@
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya)}}</h1>
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(order.biaya_administrasi)}}</h1>
               <h1 class="con_kanan" style='color:red;'>Rp {{countDiskon()}}</h1>
-              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(countBiayaAkhir(order.biaya_administrasi, order.diskon, order.biaya))}}</h1>
+              <h1 class="con_kanan">Rp {{transactionServices.formatPrice(countBiayaAkhir(order.biaya_administrasi, order.biaya))}}</h1>
               <h1 class="con_kanan" style='color:blue;'>Rp {{transactionServices.formatPrice(order.saldo_user)}}</h1>
               <h1 class="con_kanan">Rp {{transactionServices.formatPrice(countSaldoAkhir())}}</h1>
           </div>
@@ -74,7 +74,7 @@ export default {
       order: {
         nomor_pelanggan: null,
         biaya: null,
-        diskon: 0,
+        diskon: null,
         biaya_administrasi : 2000,
         biaya_akhir : null,
         nama_user: null,
@@ -98,20 +98,22 @@ export default {
       this.order.nama_user = this.data[0].nama
       this.order.saldo_user = this.data[0].saldo_user
       this.order.nomor_pelanggan = this.data[0].nomor_pelanggan
-      this.order.biaya = this.data[0].pilihan_saldo
+      this.order.biaya = parseInt(this.data[0].pilihan_saldo)
       this.order.diskon = this.data[0].kupon
       this.order.id_varian = this.data[0].jenisVarian
       this.order.id_user = this.data[0].id_user
     },
     countDiskon(){
-      this.order.diskon = this.order.diskon * this.order.biaya
-      if(this.order.diskon==0){
+      var temp
+      temp = this.order.diskon * parseFloat(this.order.biaya)
+      if(temp==0){
         return 0
       }
-      return this.diskon
+      // this.order.diskon = temp
+      return temp
     },
-    countBiayaAkhir(biayaAdmin, kuponDiskon, biaya){
-      this.order.biaya_akhir = (biaya - (biaya* kuponDiskon)) + biayaAdmin 
+    countBiayaAkhir(biayaAdmin, biaya){
+      this.order.biaya_akhir = (biaya - this.countDiskon()) + biayaAdmin 
       return this.order.biaya_akhir
     },
     countSaldoAkhir(){
