@@ -162,7 +162,7 @@
       },
       submitForm() {
         axios
-          .put(`/users/${this.id}`, this.person)
+          .put(`/users/id/${this.id}`, this.person)
           // .put(`/users/${this.id}`, {
           //   password: newPassword
           // })

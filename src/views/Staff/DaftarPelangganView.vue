@@ -42,6 +42,7 @@
         },
         data() {
             return {
+                customerType : "customer",
                 transactionServices : new TransactionServices(),
                 data: [
                     {
@@ -95,7 +96,7 @@
         methods: {
             async fetchData() {
                 axios
-                .get("/users/")
+                .get(`/users/type/${this.customerType}`)
                 .then((response) => (this.data = response.data.data))
                 .catch((error) => {
                     console.log(error);

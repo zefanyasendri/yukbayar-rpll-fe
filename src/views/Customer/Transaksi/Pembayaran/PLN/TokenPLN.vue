@@ -61,8 +61,9 @@
         </section>
         <div class="bagian_bawah">
           <select name='kupon' id='kupon_dropdown' v-model="pln.kupon" >
-            <option value='kupon_1'>Kupon 10% YukPay Akhir Bulan</option>
-            <option value='kupon_2'>Kupon 5% Anniversary YukBayar</option>
+            <!-- <template v-for="kupon in dataDiskon" > -->
+                <option v-for="(value, key) in dataDiskon" v-bind:key="key" :value="value.jumlahPotongan" >{{value.nama}}</option>
+            <!-- </template> -->
           </select>
           <div class="button_listrik">
             <span style="margin-top:2rem;"><button type="button" id="buttonlistrik" v-on:click="submitForm">Lanjutkan Pembayaran</button></span>
@@ -82,6 +83,7 @@ export default {
   name : "PLN_Token",
   data() {
     return {
+      saldoPilihan : 0,
       dataUser : [],
       pln: {
         nomor_pelanggan: "",
@@ -92,6 +94,12 @@ export default {
         id_user: null,
         jenisVarian : "",
       },
+      dataDiskon : [{
+        id : null,
+        kode : null,
+        nama : null,
+        jumlahPotongan : null,
+      }],
       transactionServices: new TransactionServices(),
       loginService: new LoginService()
     };
@@ -101,42 +109,43 @@ export default {
       this.transactionServices.removeFromCart()
       this.data = this.loginService.getCurrentUserLoginData();
       this.pln.nama = this.data[0].nama;
-      this.pln.id_user = this.data[0].id
-      axios
-          .get(`/users/${this.pln.id_user}`)
-          .then((response) => {
-            this.pln.saldo_user = response.data.data.saldoYukPay;
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      alert("Data" + this.dataUser[0].nama)
-      // const res = await axios.get("/users/" + this.id);
-      // this.dataProfile = res.data.data;
+      this.pln.id_user = this.data[0].id;
+
+      //axios
+      const axiosrequest1 = axios.get(`/users/id/${this.pln.id_user}`);
+      const axiosrequest2 = axios.get('/diskon/');
+      axios.all([axiosrequest1, axiosrequest2])
+        .then(axios.spread((res1, res2) => {
+          this.pln.saldo_user = res1.data.data.saldoYukPay;
+          this.dataDiskon = res2.data.data;
+        }))
+        .catch((error) => {
+          console.log(error);
+        });
     },
     submitForm() {
       let perbandingan = this.pln.saldo_user
-      let saldoPilihan = this.pln.pilihan_saldo
-      if(perbandingan < saldoPilihan){
+      this.saldoPilihan = this.pln.pilihan_saldo
+      if(perbandingan < this.saldoPilihan){
         this.pln.pilihan_saldo = null
         alert("Saldo anda tidak cukup!!")
       } else if (this.pln.nomor_pelanggan == null || this.pln.nomor_pelanggan == "" || this.pln.nomor_pelanggan == " " || this.pln.nomor_pelanggan.length != 12){
           alert("Nomor Token Listrik belum terisi atau tidak valid")
       } else {
-        if (saldoPilihan == null || saldoPilihan == 0){
+        if (this.saldoPilihan == null || this.saldoPilihan == 0){
           alert("Anda belum memilih pilihan saldo!")
         } else {
-          if (saldoPilihan == 20000){
+          if (this.saldoPilihan == 20000){
             this.pln.jenisVarian = "V1"
-          } else if (saldoPilihan == 50000){
+          } else if (this.saldoPilihan == 50000){
             this.pln.jenisVarian = "V2"
-          } else if (saldoPilihan == 100000){
+          } else if (this.saldoPilihan == 100000){
             this.pln.jenisVarian = "V3"
-          } else if (saldoPilihan == 150000){
+          } else if (this.saldoPilihan == 150000){
             this.pln.jenisVarian = "V4"
-          } else if (saldoPilihan == 500000){
+          } else if (this.saldoPilihan == 500000){
             this.pln.jenisVarian = "V5"
-          } else if (saldoPilihan == 1000000){
+          } else if (this.saldoPilihan == 1000000){
             this.pln.jenisVarian = "V6"
           }
           let dataTransaksi = [];
