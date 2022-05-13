@@ -176,7 +176,7 @@ export default {
     async fetchData() {
       this.data = this.loginService.getCurrentUserLoginData();
       this.id = this.data[0].id;
-      const res = await axios.get("/users/" + this.id);
+      const res = await axios.get("/users/id/" + this.id);
       this.dataProfile = res.data.data;
     },
   },
