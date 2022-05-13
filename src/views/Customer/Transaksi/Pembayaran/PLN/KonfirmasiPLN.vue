@@ -130,7 +130,7 @@ export default {
         bodyFormData.append('saldo',this.order.saldo_akhir)
         const axiosrequest2 = axios({
           method: "put",
-          url: `/users/${this.order.id_user}/saldo`,
+          url: `/users/id/${this.order.id_user}/saldo`,
           data: bodyFormData,
           headers: { "Content-Type": "multipart/form-data" }
         });

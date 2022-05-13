@@ -60,7 +60,7 @@ export default {
         this.data = this.loginService.getCurrentUserLoginData();
         this.id = this.data[0].id;
         axios
-          .get(`/users/${this.id}`)
+          .get(`/users/id/${this.id}`)
           .then((response) => {
             this.nama = response.data.data.nama;
             this.saldoYukPay = response.data.data.saldoYukPay;
