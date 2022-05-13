@@ -75,7 +75,7 @@ export default {
     },
     submitForm(){
       this.transactionServices.removeFromCart()
-      location.replace("/")
+      location.replace("/home")
     }
   }
 };

@@ -91,7 +91,7 @@ export default {
           kodeYukPay: null,
           metode: null,
           nominal: null,
-          IdPengguna: null,
+          id_pengguna: null,
           tanggal: null,
         },
       ],
@@ -159,7 +159,7 @@ export default {
           searchable: true,
         },
         {
-          field: "IdPengguna",
+          field: "id_pengguna",
           label: "Id User",
           searchable: true,
         },
@@ -168,7 +168,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      const axiosrequest1 = axios.get('/transaksi');
+      const axiosrequest1 = axios.get('/transaksi/');
       const axiosrequest2 = axios.get('/topup');
       axios.all([axiosrequest1, axiosrequest2])
         .then(axios.spread((res1, res2) => {
